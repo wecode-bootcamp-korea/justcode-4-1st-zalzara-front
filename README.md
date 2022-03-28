@@ -1,7 +1,2 @@
-# Team Member
+# justcode-4-1st-zalzara-front
 
-- 김슬기
-- 전해윤
-- 정한솔
-- 최정환
-- 한서연
