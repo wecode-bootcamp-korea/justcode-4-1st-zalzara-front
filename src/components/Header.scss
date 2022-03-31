@@ -1,0 +1,42 @@
+$serchText: 15px;
+$spaceFromSide: 20px;
+
+.Header {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background-color: inherit;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  button {
+    border: none;
+  }
+  .homeName {
+    margin-left: $spaceFromSide;
+    font-size: 30px;
+    .menuBar {
+      margin-right: 25px;
+    }
+  }
+  .searchBox {
+    display: flex;
+    font-size: $serchText;
+    align-items: flex-end;
+    background-color: inherit;
+    .line {
+      height: 1px;
+      padding-right: 150px;
+      background-color: black;
+      margin-top: $serchText;
+    }
+  }
+  .userInfo {
+    display: flex;
+    align-items: flex-end;
+    margin-right: $spaceFromSide;
+  }
+}
