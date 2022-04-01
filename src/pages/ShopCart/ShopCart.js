@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import BasketCard from './components/BasketCard';
 import ShopLaterCard from './components/ShopLater';
+import { CartContext } from './Contexts';
 import './ShopCart.scss';
 
 export default function ShopCart() {
+  const [items, set_items] = useState([]);
   const [card, setCard] = useState(<BasketCard />);
   const [line, setLine] = useState('basket');
-  const [basket, set_basket] = useState([]);
-  let items = [];
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    items = [
+    set_items([
       {
         url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
         price: 412414,
@@ -30,12 +30,16 @@ export default function ShopCart() {
         later: 0,
         count: 1,
       },
-    ];
-    let basket_arr = items.map(i => {
-      if (i.later === 0) return i;
-    });
-    set_basket(basket_arr);
+    ]);
   }, []);
+
+  const basket_count = items => {
+    return items.map(i => {
+      if (i.later === 0) {
+        return i;
+      }
+    });
+  };
 
   const change_basket = event => {
     event.preventDefault();
@@ -50,24 +54,26 @@ export default function ShopCart() {
   };
 
   return (
-    <div className="ShopCart">
-      <header />
-      <nav className="nav_bar">
-        <div
-          className={line === 'basket' ? 'basket' : 'basket_out'}
-          onClick={change_basket}
-        >
-          장바구니 <span>({})</span>
-        </div>{' '}
-        <div
-          className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
-          onClick={change_basket}
-        >
-          나중에 쇼핑하기 <span>(0)</span>
-        </div>
-      </nav>
-      {card}
-      <footer />
-    </div>
+    <CartContext.Provider value={{ items }}>
+      <div className="ShopCart">
+        <header />
+        <nav className="nav_bar">
+          <div
+            className={line === 'basket' ? 'basket' : 'basket_out'}
+            onClick={change_basket}
+          >
+            장바구니 <span>({basket_count(items).length})</span>
+          </div>{' '}
+          <div
+            className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
+            onClick={change_basket}
+          >
+            나중에 쇼핑하기 <span>(0)</span>
+          </div>
+        </nav>
+        {card}
+        <footer />
+      </div>
+    </CartContext.Provider>
   );
 }

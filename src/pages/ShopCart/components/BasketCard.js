@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './BasketCard.scss';
 import ProductCard from './ProductCard';
+import { CartContext, BasketContext } from '../Contexts';
 
 export default function BasketCard() {
-  const bascket = 0;
-  const [item, set_item] = useState({
-    url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
-    price: 412414,
-    name: '스프라이트 머시기',
-    id: `2132/1323/123`,
-    size: '더블/퀸 (230 x 250)',
-    later: 0,
+  let item = {
+    price: 23123,
     count: 1,
-  });
+    later: false,
+  };
+  const { items } = useContext(CartContext);
+  console.log(items);
   const [is_none, set_is_none] = useState(true);
   const [total_price, set_total_price] = useState(item.price);
   const [count, set_count] = useState(item.count);
@@ -29,7 +27,6 @@ export default function BasketCard() {
   const set_delete = later => {
     set_later(later);
   };
-
   useEffect(() => {
     item.count > 0 ? set_is_none(false) : set_is_none(true);
   }, [item, count]);
@@ -43,16 +40,13 @@ export default function BasketCard() {
       ) : count === 0 && item.later === 1 ? (
         set_is_none(true)
       ) : (
-        <>
+        <BasketContext.Provider>
           <ProductCard
             item={item}
             get_price={get_price}
             count_up_down={count_up_down}
           />
-
-          <button className="clear_basket" onClick={() => count_up_down(0)}>
-            장바구니 비우기
-          </button>
+          <button className="clear_basket">장바구니 비우기</button>
 
           <div className="order_box">
             <div className="total_items">{item.count} 제품</div>
@@ -68,7 +62,7 @@ export default function BasketCard() {
             <button className="purchase_btn">주문하기</button>
             <div className="free_deliver">무료 매장 배송 가능</div>
           </div>
-        </>
+        </BasketContext.Provider>
       )}
     </div>
   );
