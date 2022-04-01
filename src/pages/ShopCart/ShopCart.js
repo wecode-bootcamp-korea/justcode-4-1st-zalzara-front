@@ -5,13 +5,13 @@ import { CartContext } from './Contexts';
 import './ShopCart.scss';
 
 export default function ShopCart() {
-  const [items, set_items] = useState([]);
+  const [items, setItems] = useState([]);
   const [card, setCard] = useState(<BasketCard />);
   const [line, setLine] = useState('basket');
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    set_items([
+    setItems([
       {
         url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
         price: 412414,
@@ -33,8 +33,9 @@ export default function ShopCart() {
     ]);
   }, []);
 
-  const basket_count = items => {
+  const basketCount = items => {
     let count = 0;
+    // eslint-disable-next-line array-callback-return
     items.map(i => {
       if (i.later === 0) {
         count += i.count;
@@ -44,7 +45,6 @@ export default function ShopCart() {
   };
 
   const change_basket = event => {
-    event.preventDefault();
     const { className } = event.target;
     if (className === 'basket' || className === 'basket_out') {
       setLine('basket');
@@ -58,13 +58,12 @@ export default function ShopCart() {
   return (
     <CartContext.Provider value={{ items }}>
       <div className="ShopCart">
-        <header />
         <nav className="nav_bar">
           <div
             className={line === 'basket' ? 'basket' : 'basket_out'}
             onClick={change_basket}
           >
-            장바구니 <span>({basket_count(items)})</span>
+            장바구니 <span>({basketCount(items)})</span>
           </div>{' '}
           <div
             className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
@@ -74,7 +73,6 @@ export default function ShopCart() {
           </div>
         </nav>
         {card}
-        <footer />
       </div>
     </CartContext.Provider>
   );

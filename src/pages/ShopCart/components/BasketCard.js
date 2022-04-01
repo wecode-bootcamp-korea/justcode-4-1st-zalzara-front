@@ -4,62 +4,55 @@ import ProductCard from './ProductCard';
 import { CartContext, BasketContext } from '../Contexts';
 
 export default function BasketCard() {
-  let item = {
-    price: 23123,
-    count: 1,
-    later: false,
-  };
   const { items } = useContext(CartContext);
-  console.log(items);
-  console.log(items.map(i => i.id));
-  const [is_none, set_is_none] = useState(true);
-  const [total_price, set_total_price] = useState(item.price);
-  const [count, set_count] = useState(item.count);
-  const [later, set_later] = useState(item.later);
+  const [isNone, setIsNone] = useState(true);
 
-  const get_price = price => {
-    set_total_price(price);
+  const totalPrice = () => {
+    let prices = items.map(i => i.price * i.count);
+    return prices.reduce((a, c) => a + c);
   };
 
-  const set_delete = later => {
-    set_later(later);
+  const totalCounts = () => {
+    let counts = items.map(i => i.count);
+    return counts.reduce((a, c) => a + c);
   };
 
   useEffect(() => {
-    items.length > 0 ? set_is_none(false) : set_is_none(true);
-  }, [item, count]);
+    items.length > 0 ? setIsNone(false) : setIsNone(true);
+  }, [items]);
 
   return (
-    <div className="BasketCard">
-      {is_none ? (
-        <div className="none_description">
-          고객님의 장바구니가 비어있습니다.
-        </div>
-      ) : items.length && item.later === 1 ? (
-        set_is_none(true)
-      ) : (
-        <BasketContext.Provider value={{ items }}>
-          {items.map(product => (
-            <ProductCard item={item} product={product} get_price={get_price} />
-          ))}
-          <button className="clear_basket">장바구니 비우기</button>
-
-          <div className="order_box">
-            <div className="total_items">{item.count} 제품</div>
-            <div className="total_price_with_tax">
-              총 제품: 세금 포함 <span>{total_price}원</span>
-            </div>
-            <div className="total_price">
-              합계: <span>{total_price}원*</span>
-            </div>
-            <span className="promotion_alert">
-              프로모션 코드가 있으신가요? 나중에 결제 페이지에서 입력하십시오.
-            </span>
-            <button className="purchase_btn">주문하기</button>
-            <div className="free_deliver">무료 매장 배송 가능</div>
+    <BasketContext.Provider value={{ items }}>
+      <div className="BasketCard">
+        {isNone ? (
+          <div className="none_description">
+            고객님의 장바구니가 비어있습니다.
           </div>
-        </BasketContext.Provider>
-      )}
-    </div>
+        ) : items.filter(i => i.count !== 0).length === 0 ? (
+          setIsNone(true)
+        ) : (
+          <>
+            {items.map(product =>
+              product.count > 0 ? <ProductCard product={product} /> : null
+            )}
+            <button className="clear_basket">장바구니 비우기</button>
+            <div className="order_box">
+              <div className="total_items">{totalCounts()} 제품</div>
+              <div className="total_price_with_tax">
+                총 제품: 세금 포함 <span>{totalPrice()}원</span>
+              </div>
+              <div className="total_price">
+                합계: <span>{totalPrice()}원*</span>
+              </div>
+              <span className="promotion_alert">
+                프로모션 코드가 있으신가요? 나중에 결제 페이지에서 입력하십시오.
+              </span>
+              <button className="purchase_btn">주문하기</button>
+              <div className="free_deliver">무료 매장 배송 가능</div>
+            </div>
+          </>
+        )}
+      </div>
+    </BasketContext.Provider>
   );
 }
