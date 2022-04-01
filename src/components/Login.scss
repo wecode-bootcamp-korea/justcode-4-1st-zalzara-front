@@ -1,13 +1,22 @@
 .login-background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #eeefef;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
 .login-container {
   display: flex;
-  border: 2px solid #dedede;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80%;
+  width: 60%;
+  padding: 16px;
 }
 
 .left-half {
@@ -17,8 +26,6 @@
   flex-direction: column;
   width: 50%;
   padding: 30px;
-  // border: 2px solid #dedede;
-  border-radius: 3px;
   background-color: white;
   p {
     padding: 5px 0;
@@ -27,10 +34,12 @@
 
 .login-comment {
   width: 100%;
+  line-height: 120%;
 }
 
 .login-title {
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .login-form {
@@ -50,6 +59,8 @@
   }
   .login-button {
     padding: 7px 0;
+    background-color: white;
+    border: 1px solid black;
   }
 }
 
@@ -81,15 +92,20 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
-  // border: 2px solid #dedede;
-  border-radius: 3px;
   background-color: white;
   flex-grow: 1;
+  .right-half-top {
+    display: flex;
+    justify-content: space-between;
+  }
   h1 {
     font-weight: bold;
   }
   button {
+    width: 85%;
     padding: 5px;
     margin-top: 20px;
+    background-color: white;
+    border: 1px solid black;
   }
 }
