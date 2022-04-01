@@ -1,0 +1,29 @@
+{
+  "rug": [
+    {
+      "id": 1,
+      "name": "패치 디테일 주트 러그",
+      "imgUrl": "/images/FectchDetailRug.jpg"
+    },
+    {
+      "id": 2,
+      "name": "빈티지 러그",
+      "imgUrl": "/images/VintageRug.jpg"
+    },
+    {
+      "id": 3,
+      "name": "웨이브 울 러그",
+      "imgUrl": "/images/WaveWoolRug.jpg"
+    },
+    {
+      "id": 4,
+      "name": "플렉트 러그",
+      "imgUrl": "/images/FlectRug.jgp"
+    },
+    {
+      "id": 5,
+      "name": "비스코스&바나나 리브즈 러그",
+      "imgUrl": "/images/Viscose&BananaRug.jpg"
+    }
+  ]
+}
