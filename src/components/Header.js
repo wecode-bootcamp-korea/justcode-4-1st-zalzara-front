@@ -30,14 +30,14 @@ const Header = props => {
           검색 <div className="line" />
         </button>
         <div className="userInfo">
-          <button className="login-btn" onClick={openModal}>
-            {/* <button className="login-btn"> */}
-            <AiOutlineUser />
-            로그인
-          </button>
-          <button className="cart">
-            <AiOutlineShopping />0
-          </button>
+          <div className="login-btn" onClick={openModal}>
+            <AiOutlineUser size="20" />
+            로그인&nbsp;&nbsp;
+          </div>
+          <div className="cart">
+            <AiOutlineShopping size="20" />
+            장바구니&nbsp;(0)
+          </div>
         </div>
       </div>
       <Login showModal={showModal} closeModal={closeModal} />

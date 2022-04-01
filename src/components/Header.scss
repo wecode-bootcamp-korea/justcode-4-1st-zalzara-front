@@ -38,5 +38,7 @@ $spaceFromSide: 20px;
     display: flex;
     align-items: flex-end;
     margin-right: $spaceFromSide;
+    cursor: pointer;
+    font-size: 13px;
   }
 }

@@ -53,7 +53,11 @@ function Login({ showModal, setShowModal, closeModal }) {
             <div className="right-half">
               <div className="right-half-top">
                 <h1>회원가입</h1>
-                <IoCloseOutline size="24" onClick={closeModal} />
+                <IoCloseOutline
+                  size="24"
+                  cursor="pointer"
+                  onClick={closeModal}
+                />
               </div>
               <button>계정 만들기</button>
             </div>
