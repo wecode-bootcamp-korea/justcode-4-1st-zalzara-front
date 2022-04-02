@@ -15,52 +15,52 @@ import { DiAndroid } from 'react-icons/di';
 
 export default function Footer() {
   return (
-    <div class="footer">
-      <section class="info-block">
+    <div className="footer">
+      <section className="info-block">
         <span>잘자라홈코리아 유한회사 (Zalzara Home Korea Ltd.) |</span>
         <span>서울시 중구 한강대로 416 서울스퀘어 13층</span>
         <span>
-          <b class="bold">사업자 등록 번호:</b>
+          <b className="bold">사업자 등록 번호:</b>
           121-22-12194 |
         </span>
         <span>
-          <b class="bold">대표자:</b>
+          <b className="bold">대표자:</b>
           김수한무 |
         </span>
         <span>
-          <b class="bold">연락처:</b>
+          <b className="bold">연락처:</b>
           010-3158-3047 (발신자 부담 번호) |
         </span>
         <span>
-          <b class="bold">이메일:</b>
+          <b className="bold">이메일:</b>
           info.kr@zalzara.com |
         </span>
         <span>
-          <b class="bold">호스팅 서비스 제공업체:</b>
+          <b className="bold">호스팅 서비스 제공업체:</b>
           ITX Haley B.V. |
         </span>
         <span>
-          <b class="bold">통신판매업신고</b>
+          <b className="bold">통신판매업신고</b>
           2022-서울강북-01234 |
         </span>
         <span>
-          <b class="bold">개인정보 보호 정책</b>
+          <b className="bold">개인정보 보호 정책</b>
         </span>
       </section>
-      <section class="end-block">
-        <div class="input-row">
+      <section className="end-block">
+        <div className="input-row">
           <input
             type="text"
             name="email"
             id="email"
-            class="input"
+            className="input"
             placeholder="뉴스레터 구독 - 이메일 주소를 입력하세요"
           />
         </div>
-        <div class="social-row">
-          <div class="follow-box">
+        <div className="social-row">
+          <div className="follow-box">
             <span>팔로우하세요</span>
-            <div class="icons">
+            <div className="icons">
               <RiKakaoTalkFill size="1.6rem" />
               <FaFacebookF size="1.6rem" />
               <FaInstagram size="1.6rem" />
@@ -70,28 +70,28 @@ export default function Footer() {
               <FaSpotify size="1.6rem" />
             </div>
           </div>
-          <div class="download-box">
+          <div className="download-box">
             <span>자라홈 APP 다운로드</span>
-            <div class="icons">
+            <div className="icons">
               <FaApple size="1.6rem" />
               <DiAndroid size="1.6rem" />
             </div>
           </div>
         </div>
-        <div class="footer-row">
-          <div class="policy-container">
+        <div className="footer-row">
+          <div className="policy-container">
             <h4>정책</h4>
             <span>구매 약관</span>
             <span>개인정보 보호 정책</span>
             <span>쿠키 정책</span>
             <span>쿠키 설정</span>
           </div>
-          <div class="company-container">
+          <div className="company-container">
             <h4>회사</h4>
             <span>채용 정보</span>
             <span>프레스센터</span>
           </div>
-          <div class="contact-container">
+          <div className="contact-container">
             <h4>연락처</h4>
             <span>연락처</span>
             <span>GUEST PURCHASE</span>
@@ -100,7 +100,7 @@ export default function Footer() {
           </div>
         </div>
       </section>
-      <div class="language">
+      <div className="language">
         <span>SOUTH KOREA / 대한민국 / 한국어</span>
       </div>
     </div>
