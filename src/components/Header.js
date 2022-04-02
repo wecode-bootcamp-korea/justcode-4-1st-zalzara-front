@@ -7,16 +7,16 @@ import {
 import { useState } from 'react';
 import Login from './Login';
 
-const Header = props => {
-  const [showModal, setShowModal] = useState(false);
+function Header() {
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const openModal = () => {
-    setShowModal(true);
+  const openLoginModal = () => {
+    setShowLoginModal(true);
   };
 
   const closeModal = event => {
     event.preventDefault();
-    setShowModal(false);
+    setShowLoginModal(false);
   };
 
   return (
@@ -30,7 +30,7 @@ const Header = props => {
           검색 <div className="line" />
         </button>
         <div className="userInfo">
-          <div className="login-btn" onClick={openModal}>
+          <div className="login-btn" onClick={openLoginModal}>
             <AiOutlineUser size="20" />
             로그인&nbsp;&nbsp;
           </div>
@@ -40,9 +40,9 @@ const Header = props => {
           </div>
         </div>
       </div>
-      <Login showModal={showModal} closeModal={closeModal} />
+      <Login showLoginModal={showLoginModal} closeModal={closeModal} />
     </>
   );
-};
+}
 
 export default Header;
