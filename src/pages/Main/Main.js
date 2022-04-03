@@ -1,12 +1,15 @@
 import style from './Main.module.scss';
-import './RugImageCard';
+// import './RugImageCard';
 import React, { useEffect, useState } from 'react';
 import RugImageCard from './RugImageCard';
+// import { useNavigate } from 'react-router-dom';
 
 function Main() {
   const [rugList, setRugList] = useState({
     rugImage: [],
   });
+
+  // const navigate = useNavigate();
 
   useEffect(() => {
     fetch('/data/rugList.json')
@@ -39,6 +42,13 @@ function Main() {
           <RugImageCard key={rug.id} rug={rug} />
         ))}
       </ul>
+      {/* <button
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        뒤로가기
+      </button> */}
     </div>
   );
 }

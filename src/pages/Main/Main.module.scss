@@ -5,7 +5,8 @@
 .rug__list {
   display: flex;
   flex-wrap: wrap; //이미지 줄바꿈으로 내리기
-  justify-content: space-between;
+  justify-content: center;
+  gap: 13px; // 이미지 사이 중간 갭주기
 }
 
 img {
