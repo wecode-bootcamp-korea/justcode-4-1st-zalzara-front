@@ -13,19 +13,21 @@ export default function ShopCart() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     setItems([
       {
+        id: 2,
         url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
         price: 412414,
         name: '스프라이트 머시기',
-        id: `2132/1323/123`,
+        pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
-        later: 0,
+        later: 1,
         count: 1,
       },
       {
+        id: 2,
         url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
         price: 123231,
         name: '콜라',
-        id: `2132/1323/123`,
+        pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
         later: 0,
         count: 1,
@@ -44,7 +46,7 @@ export default function ShopCart() {
     return count;
   };
 
-  const change_basket = event => {
+  const changeBasket = event => {
     const { className } = event.target;
     if (className === 'basket' || className === 'basket_out') {
       setLine('basket');
@@ -56,18 +58,18 @@ export default function ShopCart() {
   };
 
   return (
-    <CartContext.Provider value={{ items }}>
+    <CartContext.Provider value={{ items, setItems }}>
       <div className="ShopCart">
         <nav className="nav_bar">
           <div
             className={line === 'basket' ? 'basket' : 'basket_out'}
-            onClick={change_basket}
+            onClick={changeBasket}
           >
             장바구니 <span>({basketCount(items)})</span>
           </div>{' '}
           <div
             className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
-            onClick={change_basket}
+            onClick={changeBasket}
           >
             나중에 쇼핑하기 <span>(0)</span>
           </div>

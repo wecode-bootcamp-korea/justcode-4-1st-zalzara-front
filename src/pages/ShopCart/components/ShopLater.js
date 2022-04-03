@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './ShopLaterCard.scss';
 import ProductCard from './ProductCard';
+import { CartContext } from '../Contexts';
 
 export default function ShopLaterCard() {
+  let { items } = useContext(CartContext);
   const [item, set_item] = useState({
     url: '',
     price: 0,
@@ -30,6 +32,7 @@ export default function ShopLaterCard() {
 
   return (
     <div className="ShopLaterCard">
+      {console.log(items)}
       {is_none ? (
         <div className="none_description">
           나중에 쇼핑하기 위해 저장한 상품 목록이 비어 있습니다.

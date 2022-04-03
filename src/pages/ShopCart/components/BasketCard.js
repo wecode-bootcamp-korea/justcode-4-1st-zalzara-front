@@ -4,27 +4,34 @@ import ProductCard from './ProductCard';
 import { CartContext, BasketContext } from '../Contexts';
 
 export default function BasketCard() {
-  const { items } = useContext(CartContext);
+  const { items, setItems } = useContext(CartContext);
   const [isNone, setIsNone] = useState(true);
 
   const totalPrice = () => {
-    let prices = items.map(i => i.price * i.count);
+    let prices = items.filter(i => i.later === 0).map(i => i.price * i.count);
     return prices.reduce((a, c) => a + c);
   };
 
   const totalCounts = () => {
-    let counts = items.map(i => i.count);
+    let counts = items.filter(i => i.later === 0).map(i => i.count);
     return counts.reduce((a, c) => a + c);
+  };
+  const clearBasket = () => {
+    setIsNone(true);
+    setItems([...items.filter(i => i.later !== 0)]);
   };
 
   useEffect(() => {
-    items.length > 0 ? setIsNone(false) : setIsNone(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    items.filter(i => i.later === 0).length > 0
+      ? setIsNone(false)
+      : setIsNone(true);
   }, [items]);
 
   return (
-    <BasketContext.Provider value={{ items }}>
+    <BasketContext.Provider value={{ items, setItems }}>
       <div className="BasketCard">
-        {isNone ? (
+        {isNone || totalCounts() === 0 ? (
           <div className="none_description">
             고객님의 장바구니가 비어있습니다.
           </div>
@@ -33,9 +40,13 @@ export default function BasketCard() {
         ) : (
           <>
             {items.map(product =>
-              product.count > 0 ? <ProductCard product={product} /> : null
+              product.count > 0 && product.later === 0 ? (
+                <ProductCard key={product.id} product={product} />
+              ) : null
             )}
-            <button className="clear_basket">장바구니 비우기</button>
+            <button className="clear_basket" onClick={clearBasket}>
+              장바구니 비우기
+            </button>
             <div className="order_box">
               <div className="total_items">{totalCounts()} 제품</div>
               <div className="total_price_with_tax">

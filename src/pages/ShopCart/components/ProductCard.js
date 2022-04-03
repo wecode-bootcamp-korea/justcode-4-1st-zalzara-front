@@ -4,7 +4,7 @@ import { AiOutlineDelete, AiOutlineHeart } from 'react-icons/ai';
 import { CartContext } from '../Contexts';
 
 export default function ProductCard({ product }) {
-  let { items } = useContext(CartContext);
+  const { items, setItems } = useContext(CartContext);
 
   const [count, setCount] = useState(product.count);
   product.count = count;
@@ -15,6 +15,7 @@ export default function ProductCard({ product }) {
 
   useEffect(() => {
     setTotalPrice(count * product.price);
+    setItems([...items]);
   }, [count, product.price]);
 
   return count === 0 ? null : (
@@ -34,7 +35,7 @@ export default function ProductCard({ product }) {
           <span className="price">{totalPrice}&nbsp;원</span>
           <span className="id">
             제품 번호&nbsp;
-            {product.id}
+            {product.pid}
           </span>
           <span className="size">{product.size}</span>
         </div>
