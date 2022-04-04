@@ -11,18 +11,32 @@ export default function ProductCard({ product }) {
 
   const [totalPrice, setTotalPrice] = useState(count * product.price);
 
+  const [later, setLater] = useState(product.later);
+  product.later = later;
+
   const deleteCard = () => setCount(0);
 
   useEffect(() => {
     setTotalPrice(count * product.price);
     setItems([...items]);
-  }, [count, product.price]);
+  }, [count, later]);
 
   return count === 0 ? null : (
     <article className="ProductCard">
       <div className="img_box">
         <img src={product.url} alt={product.name} />
-        <button className="heart">
+        <button
+          className="heart"
+          onClick={() =>
+            setLater(prev => {
+              if (prev === 0) {
+                return (prev = 1);
+              } else {
+                return (prev = 0);
+              }
+            })
+          }
+        >
           <AiOutlineHeart />
         </button>
         <button className="delete" onClick={() => deleteCard()}>

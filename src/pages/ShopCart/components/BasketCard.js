@@ -31,7 +31,8 @@ export default function BasketCard() {
   return (
     <BasketContext.Provider value={{ items, setItems }}>
       <div className="BasketCard">
-        {isNone || totalCounts() === 0 ? (
+        {isNone ||
+        items.filter(i => i.later === 0).map(i => i.count).length === 0 ? (
           <div className="none_description">
             고객님의 장바구니가 비어있습니다.
           </div>

@@ -35,11 +35,11 @@ export default function ShopCart() {
     ]);
   }, []);
 
-  const basketCount = items => {
+  const basketCount = later => {
     let count = 0;
     // eslint-disable-next-line array-callback-return
     items.map(i => {
-      if (i.later === 0) {
+      if (i.later === later) {
         count += i.count;
       }
     });
@@ -65,13 +65,13 @@ export default function ShopCart() {
             className={line === 'basket' ? 'basket' : 'basket_out'}
             onClick={changeBasket}
           >
-            장바구니 <span>({basketCount(items)})</span>
+            장바구니 <span>({basketCount(0)})</span>
           </div>{' '}
           <div
             className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
             onClick={changeBasket}
           >
-            나중에 쇼핑하기 <span>(0)</span>
+            나중에 쇼핑하기 <span>({basketCount(1)})</span>
           </div>
         </nav>
         {card}
