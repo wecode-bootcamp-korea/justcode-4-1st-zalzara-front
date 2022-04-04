@@ -62,7 +62,10 @@ function Detail() {
     <div>
       <div id="myModal" className="modal">
         {/* <!-- The Close Button --> */}
-        <span className="close" onClick={(modal.style.display = 'none')}>
+        <span
+          className="close"
+          // onClick={(modal.style.display = 'none')}
+        >
           &times;
         </span>
 
