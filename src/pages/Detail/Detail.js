@@ -2,6 +2,7 @@ import React from 'react';
 import './Detail.scss';
 import { useEffect, useState } from 'react';
 import Modal from './Modal.js';
+import Header from '../../components/Header';
 // import { useNavigate } from 'react-router-dom';
 
 function Detail() {
@@ -11,6 +12,7 @@ function Detail() {
   const [modalOpen, setModalOpen] = useState(false);
 
   // const navigate = useNavigate();
+
   const data = {
     id: 1,
     name: '패치 디테일 주트 러그',
@@ -71,6 +73,7 @@ function Detail() {
 
   return (
     <div>
+      <Header />
       <section className="main">
         <div className="content-container">
           {/* 이미지 모달 트리거 */}

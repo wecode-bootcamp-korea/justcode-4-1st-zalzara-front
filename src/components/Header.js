@@ -3,12 +3,11 @@ import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { VscMenu } from 'react-icons/vsc';
 import { useState } from 'react';
 import Login from './Login';
-// import { useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [showLoginModal, setShowLoginModal] = useState('closed');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const openLoginModal = () => {
     setShowLoginModal('login');
@@ -42,7 +41,7 @@ function Header() {
               <span>로그인</span>
             </div>
           </div>
-          <div className="cart-btn">
+          <div className="cart-btn" onClick={() => navigate('/shop-cart')}>
             <AiOutlineShopping size="20" />
             <div>
               <span>장바구니</span>
