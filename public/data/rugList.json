@@ -3,47 +3,36 @@
     {
       "id": 1,
       "name": "패치 디테일 주트 러그",
-      "imgUrl": "../images/FetchDetailRug.jpeg",
-      "price": "699,000 원",
-      "description": "주트 패치워크 소재의 내추럴 컬러 러그",
-      "size": "160x230cm",
-      "product_id": 1
+      "imageUrl": "../images/FetchDetailRug.jpg",
+      "price": "699,000 원"
     },
     {
       "id": 2,
       "name": "빈티지 러그",
-      "imgUrl": "/images/VintageRug.jpeg",
-      "price": "239,000 원 - 319,000 원",
-      "description": "브라운 톤 빈티지 스타일 러그.",
-      "size": "160x230cm",
-      "product_id": 2
+
+      "imageUrl": "/images/VintageRug.jpg",
+      "price": "239,000 원 - 319,000 원"
     },
     {
       "id": 3,
       "name": "웨이브 울 러그",
-      "imgUrl": "/images/WaveWoolRug.jpeg",
-      "price": "399,000 원 - 899,000 원",
-      "description": "웨이브 텍스처 마감 울 소재 러그.",
-      "size": "160x230cm",
-      "product_id": 3
+
+      "imageUrl": "/images/WaveWoolRug.jpg",
+      "price": "399,000 원 - 899,000 원"
     },
     {
       "id": 4,
       "name": "플렉트 러그",
-      "imgUrl": "/images/FlectRug.jpeg",
-      "price": "69,000 원 - 359,000 원",
-      "description": "플렉트 마감 주트와 면 소재가 매치된 러그.",
-      "size": "160x230cm",
-      "product_id": 4
+
+      "imageUrl": "/images/FlectRug.jpg",
+      "price": "69,000 원 - 359,000 원"
     },
     {
       "id": 5,
       "name": "비스코스&바나나 리브즈 러그",
-      "imgUrl": "/images/Viscose&BananaRug.jpeg",
-      "price": "699,000 원 - 899,000 원",
-      "description": "비스코스와 바나나 잎 소재의 내추럴 컬러 러그.",
-      "size": "160x230cm",
-      "product_id": 5
+
+      "imageUrl": "/images/Viscose&BananaRug.jpg",
+      "price": "699,000 원 - 899,000 원"
     }
   ]
 }

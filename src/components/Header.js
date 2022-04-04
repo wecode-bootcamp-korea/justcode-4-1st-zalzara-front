@@ -7,16 +7,20 @@ import {
 import { useState } from 'react';
 import Login from './Login';
 
-const Header = props => {
-  const [showModal, setShowModal] = useState(false);
+function Header() {
+  const [showLoginModal, setShowLoginModal] = useState('closed');
 
-  const openModal = () => {
-    setShowModal(true);
+  const openLoginModal = () => {
+    setShowLoginModal('login');
+  };
+
+  const openSignupModal = () => {
+    setShowLoginModal('signup');
   };
 
   const closeModal = event => {
     event.preventDefault();
-    setShowModal(false);
+    setShowLoginModal('closed');
   };
 
   return (
@@ -30,19 +34,24 @@ const Header = props => {
           검색 <div className="line" />
         </button>
         <div className="userInfo">
-          <button className="login-btn" onClick={openModal}>
-            {/* <button className="login-btn"> */}
-            <AiOutlineUser />
-            로그인
-          </button>
-          <button className="cart">
-            <AiOutlineShopping />0
-          </button>
+          <div className="login-btn" onClick={openLoginModal}>
+            <AiOutlineUser size="20" />
+            로그인&nbsp;&nbsp;
+          </div>
+          <div className="cart">
+            <AiOutlineShopping size="20" />
+            장바구니&nbsp;(0)
+          </div>
         </div>
       </div>
-      <Login showModal={showModal} closeModal={closeModal} />
+      <Login
+        showLoginModal={showLoginModal}
+        openSignupModal={openSignupModal}
+        openLoginModal={openLoginModal}
+        closeModal={closeModal}
+      />
     </>
   );
-};
+}
 
 export default Header;
