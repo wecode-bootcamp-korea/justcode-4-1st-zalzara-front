@@ -9,28 +9,24 @@
     {
       "id": 2,
       "name": "빈티지 러그",
-
       "imageUrl": "/images/VintageRug.jpg",
       "price": "239,000 원 - 319,000 원"
     },
     {
       "id": 3,
       "name": "웨이브 울 러그",
-
       "imageUrl": "/images/WaveWoolRug.jpg",
       "price": "399,000 원 - 899,000 원"
     },
     {
       "id": 4,
       "name": "플렉트 러그",
-
       "imageUrl": "/images/FlectRug.jpg",
       "price": "69,000 원 - 359,000 원"
     },
     {
       "id": 5,
       "name": "비스코스&바나나 리브즈 러그",
-
       "imageUrl": "/images/Viscose&BananaRug.jpg",
       "price": "699,000 원 - 899,000 원"
     }
