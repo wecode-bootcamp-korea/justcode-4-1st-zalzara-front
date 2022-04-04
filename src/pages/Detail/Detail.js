@@ -6,12 +6,34 @@ function Detail() {
   const [rugList, setRugList] = useState([]);
   const [blockColor, setBlockColor] = useState('white');
   const [fontColor, setFontColor] = useState('black');
+  const [isModal, setIsModal] = useState(false);
 
-  // const productName = rugList.rugImage[0].name;
-  // const productPrice = rugList.rugImage[0].price;
-  // const productDescription = rugList.rugImage[0].description;
-  // const productImg = rugList.rugImage[0].imgUrl;
+  const data = {
+    id: 1,
+    name: '패치 디테일 주트 러그',
+    imgUrl: '../images/FetchDetailRug.jpeg',
+    price: '699,000 원',
+    description: '주트 패치워크 소재의 내추럴 컬러 러그',
+    size: '160x230cm',
+    product_id: 1,
+  };
 
+  // 블럭 색상 변경 & 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
+  const handleBlockColor = e => {
+    blockColor === 'white' ? setBlockColor('black') : setBlockColor('white');
+  };
+  const handleFontColor = e => {
+    fontColor === 'black' ? setFontColor('white') : setFontColor('black');
+  };
+  // [기능구현필요] 장바구니 담기 클릭 이벤트
+  const addCart = () => {};
+
+  //모달핸들러, 모달
+  const ModalHandler = () => {
+    setIsModal(prev => !prev);
+  };
+
+  //목데이터 가져오기
   useEffect(() => {
     fetch('/data/rugList.json')
       .then(res => res.json())
@@ -35,46 +57,31 @@ function Detail() {
       </div>
     );
   }
-  // 블럭 색상 변경 -- 장바구니 담기 마우스 오버/아웃
-  const handleBlockColor = e => {
-    blockColor === 'white' ? setBlockColor('black') : setBlockColor('white');
-  };
-  // 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
-  const handleFontColor = e => {
-    fontColor === 'black' ? setFontColor('white') : setFontColor('black');
-  };
-  // [기능구현필요] 장바구니 담기 클릭 이벤트
-  function addCart() {
-    // console.log('장바구니담기');
-  }
 
   return (
     <div>
+      <div id="myModal" className="modal">
+        {/* <!-- The Close Button --> */}
+        <span className="close" onClick={(modal.style.display = 'none')}>
+          &times;
+        </span>
+
+        {/* <!-- Modal Content (The Image) --> */}
+        <img className="modal-content" id="img01" />
+      </div>
+
       <section className="main">
         <div className="content-container">
-          {/* 이미지 섹션| Trigger Modal */}
+          {/* 이미지 모달 트리거 */}
           <div className="image-section" id="img">
             <img
               alt="이미지 섹션"
               // src={productImg}
               src="../images/FetchDetailRug.jpeg"
-              onClick={function (event) {
-                // console.log('이미지를 클릭함');
-              }}
+              // onClick={openModal}
             />
           </div>
-          {/* Modal */}
-          <div className="modal">
-            {/* Close Button */}
-            <span className="close">&times;</span>
-            {/*  Modal content */}
-            <img
-              className="modal-content"
-              id="img01"
-              alt="fetch-lug"
-              src="../images/FetchDetailRug.jpeg"
-            />
-          </div>
+
           {/* 컨텐츠 섹션 */}
           <div className="content-section">
             <div className="sticky">
@@ -150,8 +157,68 @@ function Detail() {
           </div>
         </div>
       </section>
+      <section class="detail-footer">
+        <span>
+          <b className="bold">제조업체: </b>
+          Zara Home S.A.|
+        </span>
+        <span>
+          <b className="bold">수입업체: </b>
+          Zara Home Korea Ltd.|
+        </span>
+        <span>
+          <b className="bold">제조국: </b>
+          스페인|
+        </span>
+        <span>
+          <b className="bold">제조일: </b>본 제품은 캠페인 출시 6개월 전에
+          제조되었습니다. 보다 정확한 제조일을 확인하시려면 080-500-6445에
+          연락하십시오.|
+        </span>
+        <span>
+          <b className="bold">품질 보증 기준: </b>
+          소비자는 저희 제품의 결함으로 인한 피해에 대하여 약관 및 조건에
+          의거하여 보상받을 수 있습니다.
+        </span>
+      </section>
     </div>
   );
 }
+//목데이터에서 데이터 가져오기 코드
+// const productName = rugList.rugImage[0].name;
+// const productPrice = rugList.rugImage[0].price;
+// const productDescription = rugList.rugImage[0].description;
+// const productImg = rugList.rugImage[0].imgUrl;
 
+//모달 open & close
+// const openModal = () => {
+//   setModalOpen(true);
+//   console.log('modalOpen: ' + modalOpen);
+// };
+// const closeModal = () => {
+//   setModalOpen(false);
+//   console.log('modalOpen: ' + modalOpen);
+// };
+
+// // [이미지 모달] - 이미지 클릭시 확대
+// function Modal(props) {
+//   //열기, 닫기 부모로부터 받아옴
+//   const { open, close, imgUrl } = props;
+//   return (
+//     <div className={open ? 'openModal modal' : 'modal'}>
+//       {open ? (
+//         <section>
+//           <header>
+//             <button className="close-button" onClick={close}>
+//               &times;
+//             </button>
+//           </header>
+//           <main>
+//             <img alt="이미지확대" src={imgUrl} />
+//           </main>
+//         </section>
+//       ) : null}
+//     </div>
+//   );
+// }
 export default Detail;

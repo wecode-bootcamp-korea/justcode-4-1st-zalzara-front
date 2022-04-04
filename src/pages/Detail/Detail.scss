@@ -1,32 +1,33 @@
-//모달창 구현
+/* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  .modal-content {
-    display: block;
-    width: 100%;
-  }
-  //Modal Open Animation
-  .modal-content {
-    animation-name: zoom;
-    animation-duration: 0.6s;
-  }
-  //Close-Button
-  .close {
-    position: absolute;
-    // top: 15px;
-    // right: 35px;
-    color: black;
-    font-size: 40px;
-    transition: 0.3s;
-  }
-  .close:hover {
-    cursor: pointer;
-  }
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: black;
+  font-size: 2rem;
+  font-weight: 400;
+  transition: 0.3s;
 }
 
 .main {
@@ -138,5 +139,23 @@
         }
       }
     }
+  }
+}
+
+.detail-footer {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+  text-align: center;
+  line-height: 1.2rem;
+  font-size: 11px;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dotted #ccc;
+  span {
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .bold {
+    font-weight: bold;
+    margin-right: 4px;
   }
 }
