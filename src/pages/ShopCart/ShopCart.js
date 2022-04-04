@@ -13,7 +13,7 @@ export default function ShopCart() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     let data = [
       {
-        id: 2,
+        id: 1,
         url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
         price: 412414,
         name: '스프라이트 머시기',
