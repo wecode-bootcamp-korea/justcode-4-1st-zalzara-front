@@ -12,7 +12,8 @@ function RugImageCard({ rug }) {
   const navigate = useNavigate();
   function handleClick() {
     navigate('./detail');
-  }
+  } // 클릭하면 detail페이지로 이동하기
+
   // const [fontColor, setFontColor] = useState('white');
   // 호버 했을 때 isHovering이 true가 되는 함수
   // const mouseOnCart = () => {
@@ -32,7 +33,12 @@ function RugImageCard({ rug }) {
       <li className={style.rug__list}>
         <div className={style.rug__item}>
           <div className={style.img__wrapper}>
-            <img alt="rug" className={style.rug__img} src={rug.imageUrl} />
+            <img
+              alt="rug"
+              className={style.rug__img}
+              src={rug.imageUrl}
+              onClick={handleClick}
+            />
           </div>
           {/* {isHovering ? ( */}
           <div
