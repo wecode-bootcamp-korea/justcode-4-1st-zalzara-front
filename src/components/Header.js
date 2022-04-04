@@ -8,15 +8,19 @@ import { useState } from 'react';
 import Login from './Login';
 
 function Header() {
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState('closed');
 
   const openLoginModal = () => {
-    setShowLoginModal(true);
+    setShowLoginModal('login');
+  };
+
+  const openSignupModal = () => {
+    setShowLoginModal('signup');
   };
 
   const closeModal = event => {
     event.preventDefault();
-    setShowLoginModal(false);
+    setShowLoginModal('closed');
   };
 
   return (
@@ -40,7 +44,12 @@ function Header() {
           </div>
         </div>
       </div>
-      <Login showLoginModal={showLoginModal} closeModal={closeModal} />
+      <Login
+        showLoginModal={showLoginModal}
+        openSignupModal={openSignupModal}
+        openLoginModal={openLoginModal}
+        closeModal={closeModal}
+      />
     </>
   );
 }

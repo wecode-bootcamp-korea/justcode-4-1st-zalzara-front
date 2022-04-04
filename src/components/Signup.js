@@ -1,46 +1,69 @@
 import React from 'react';
-import styles from './Signup.module.scss';
+// import styles from './Signup.module.scss';
+import './Signup.scss';
 import { IoCloseOutline } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { HiChevronLeft } from 'react-icons/hi';
 
-function Signup({ showSignupModal, closeModal }) {
+function Signup({ openLoginModal, closeModal }) {
   return (
     <div>
-      {showSignupModal ? (
-        <div>
-          <div className={styles.signup__background} onClick={closeModal}>
-            <section
-              className={styles.signup__container}
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="left-half">
-                <div className="login-comment">
-                  <p className="login-title">자라홈 계정 만들기</p>
-                  <div className="guest-purchase-comment">
-                    <p>
-                      신속한 결제 진행을 위해 필요한 정보를 요청할 수 있습니다.
-                    </p>
-                    <p>
-                      Can’t find your order? You might have purchased as a
-                      guest. Click here and we’ll tell you how to find it.
-                    </p>
-                  </div>
+      <div className="signup-background" onClick={closeModal}>
+        <section className="signup-wrapper" onClick={e => e.stopPropagation()}>
+          <div className="signup-container">
+            <div className="signup-top">
+              <div className="signup-title">
+                <HiChevronLeft
+                  className="back-to-login"
+                  size="24"
+                  onClick={openLoginModal}
+                />
+                <IoCloseOutline
+                  className="x-mark"
+                  size="24"
+                  onClick={closeModal}
+                />
+                <div>자라홈 계정 만들기</div>
+              </div>
+              <div>
+                <input type="checkbox" />
+                <span>개인</span>
+                &nbsp;&nbsp;
+                <input type="checkbox" />
+                <span>회사</span>
+              </div>
+            </div>
+            <div className="signup-form">
+              <input className="name" type="text" placeholder="이름*" />
+              <input className="id" type="text" placeholder="이메일*" />
+              <input className="pw" type="password" placeholder="비밀번호*" />
+              <div className="consents">
+                <div className="consents-checkbox">
+                  <input type="checkbox" />
+                  <span>모두동의</span>
                 </div>
-                <div className="login-form">
-                  <input className="name" type="text" placeholder="이름*" />
-                  <input className="id" type="text" placeholder="이메일*" />
-                  <input
-                    className="pw"
-                    type="password"
-                    placeholder="비밀번호*"
-                  />
-                  <button className="login-button">계정 만들기</button>
+                <div className="consents-checkbox">
+                  <input type="checkbox" />
+                  <span>
+                    * 개인정보의 수집 및 이용에 대한 동의. 자세히 보기.
+                  </span>
+                </div>
+                <div className="consents-checkbox">
+                  <input type="checkbox" />
+                  <span>* 개인정보의 국외 이전에 대한 동의. 자세히 보기.</span>
+                </div>
+                <div className="consents-checkbox">
+                  <input type="checkbox" />
+                  <span>
+                    뉴스레터 구독을 위한 개인정보의 수집 및 이용에 대한 동의.
+                    자세히 보기.
+                  </span>
                 </div>
               </div>
-            </section>
+              <button className="make-account">계정 만들기</button>
+            </div>
           </div>
-        </div>
-      ) : null}
+        </section>
+      </div>
     </div>
   );
 }
