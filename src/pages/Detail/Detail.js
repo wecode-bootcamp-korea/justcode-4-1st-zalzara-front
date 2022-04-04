@@ -1,13 +1,16 @@
 import React from 'react';
 import './Detail.scss';
 import { useEffect, useState } from 'react';
+import Modal from './Modal.js';
+// import { useNavigate } from 'react-router-dom';
 
 function Detail() {
   const [rugList, setRugList] = useState([]);
   const [blockColor, setBlockColor] = useState('white');
   const [fontColor, setFontColor] = useState('black');
-  const [isModal, setIsModal] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
+  // const navigate = useNavigate();
   const data = {
     id: 1,
     name: '패치 디테일 주트 러그',
@@ -25,12 +28,20 @@ function Detail() {
   const handleFontColor = e => {
     fontColor === 'black' ? setFontColor('white') : setFontColor('black');
   };
-  // [기능구현필요] 장바구니 담기 클릭 이벤트
+  // 장바구니 담기 클릭 이벤트
   const addCart = () => {};
 
-  //모달핸들러, 모달
-  const ModalHandler = () => {
-    setIsModal(prev => !prev);
+  // //[모달] 핸들러
+  // const ModalHandler = () => {
+  //   setModalOpen(prev => !prev);
+  // };
+
+  //[모달] 핸들러
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   //목데이터 가져오기
@@ -60,23 +71,10 @@ function Detail() {
 
   return (
     <div>
-      <div id="myModal" className="modal">
-        {/* <!-- The Close Button --> */}
-        <span
-          className="close"
-          // onClick={(modal.style.display = 'none')}
-        >
-          &times;
-        </span>
-
-        {/* <!-- Modal Content (The Image) --> */}
-        <img className="modal-content" id="img01" />
-      </div>
-
       <section className="main">
         <div className="content-container">
           {/* 이미지 모달 트리거 */}
-          <div className="image-section" id="img">
+          <div className="image-section" onClick={openModal} id="img">
             <img
               alt="이미지 섹션"
               // src={productImg}
@@ -160,6 +158,13 @@ function Detail() {
           </div>
         </div>
       </section>
+
+      <div>
+        <Modal open={modalOpen} close={closeModal} header="Modal heading">
+          <img alt="확대된 이미지" src="../images/FetchDetailRug.jpeg" />
+        </Modal>
+      </div>
+
       <section class="detail-footer">
         <span>
           <b className="bold">제조업체: </b>
@@ -187,41 +192,5 @@ function Detail() {
     </div>
   );
 }
-//목데이터에서 데이터 가져오기 코드
-// const productName = rugList.rugImage[0].name;
-// const productPrice = rugList.rugImage[0].price;
-// const productDescription = rugList.rugImage[0].description;
-// const productImg = rugList.rugImage[0].imgUrl;
 
-//모달 open & close
-// const openModal = () => {
-//   setModalOpen(true);
-//   console.log('modalOpen: ' + modalOpen);
-// };
-// const closeModal = () => {
-//   setModalOpen(false);
-//   console.log('modalOpen: ' + modalOpen);
-// };
-
-// // [이미지 모달] - 이미지 클릭시 확대
-// function Modal(props) {
-//   //열기, 닫기 부모로부터 받아옴
-//   const { open, close, imgUrl } = props;
-//   return (
-//     <div className={open ? 'openModal modal' : 'modal'}>
-//       {open ? (
-//         <section>
-//           <header>
-//             <button className="close-button" onClick={close}>
-//               &times;
-//             </button>
-//           </header>
-//           <main>
-//             <img alt="이미지확대" src={imgUrl} />
-//           </main>
-//         </section>
-//       ) : null}
-//     </div>
-//   );
-// }
 export default Detail;
