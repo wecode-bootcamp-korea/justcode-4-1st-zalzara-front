@@ -25,18 +25,7 @@ export default function ProductCard({ product }) {
     <article className="ProductCard">
       <div className="img_box">
         <img src={product.url} alt={product.name} />
-        <button
-          className="heart"
-          onClick={() =>
-            setLater(prev => {
-              if (prev === 0) {
-                return (prev = 1);
-              } else {
-                return (prev = 0);
-              }
-            })
-          }
-        >
+        <button className="heart" onClick={() => setLater(prev => !prev)}>
           <AiOutlineHeart />
         </button>
         <button className="delete" onClick={() => deleteCard()}>

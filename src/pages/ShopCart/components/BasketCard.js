@@ -8,22 +8,25 @@ export default function BasketCard() {
   const [isNone, setIsNone] = useState(true);
 
   const totalPrice = () => {
-    let prices = items.filter(i => i.later === 0).map(i => i.price * i.count);
+    let prices = items
+      .filter(i => i.later === false)
+      .map(i => i.price * i.count);
     return prices.reduce((a, c) => a + c);
   };
 
   const totalCounts = () => {
-    let counts = items.filter(i => i.later === 0).map(i => i.count);
+    let counts = items.filter(i => i.later === false).map(i => i.count);
     return counts.reduce((a, c) => a + c);
   };
+
   const clearBasket = () => {
     setIsNone(true);
-    setItems([...items.filter(i => i.later !== 0)]);
+    setItems([...items.filter(i => i.later !== false)]);
   };
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    items.filter(i => i.later === 0).length > 0
+    items.filter(i => i.later === false).length > 0
       ? setIsNone(false)
       : setIsNone(true);
   }, [items]);
@@ -32,7 +35,7 @@ export default function BasketCard() {
     <BasketContext.Provider value={{ items, setItems }}>
       <div className="BasketCard">
         {isNone ||
-        items.filter(i => i.later === 0).map(i => i.count).length === 0 ? (
+        items.filter(i => i.later === false).map(i => i.count).length === 0 ? (
           <div className="none_description">
             고객님의 장바구니가 비어있습니다.
           </div>
@@ -41,7 +44,7 @@ export default function BasketCard() {
         ) : (
           <>
             {items.map(product =>
-              product.count > 0 && product.later === 0 ? (
+              product.count > 0 && product.later === false ? (
                 <ProductCard key={product.id} product={product} />
               ) : null
             )}

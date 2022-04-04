@@ -19,7 +19,7 @@ export default function ShopCart() {
         name: '스프라이트 머시기',
         pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
-        later: 1,
+        later: true,
         count: 1,
       },
       {
@@ -29,7 +29,7 @@ export default function ShopCart() {
         name: '콜라',
         pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
-        later: 0,
+        later: false,
         count: 1,
       },
     ]);
@@ -65,13 +65,13 @@ export default function ShopCart() {
             className={line === 'basket' ? 'basket' : 'basket_out'}
             onClick={changeBasket}
           >
-            장바구니 <span>({basketCount(0)})</span>
+            장바구니 <span>({basketCount(false)})</span>
           </div>{' '}
           <div
             className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
             onClick={changeBasket}
           >
-            나중에 쇼핑하기 <span>({basketCount(1)})</span>
+            나중에 쇼핑하기 <span>({basketCount(true)})</span>
           </div>
         </nav>
         {card}
