@@ -1,0 +1,72 @@
+.BasketCard {
+  margin: 0 50px;
+  position: relative;
+  height: 90vh; //  지워야함!
+  display: flex;
+
+  .none_description {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+  }
+  .clear_basket {
+    border: 1px solid black;
+    background-color: inherit;
+    padding: 10px 55px;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+  .order_box {
+    position: fixed;
+    right: 50px;
+    top: 150px;
+    z-index: -10;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding-top: 80px;
+    .total_items {
+      border-bottom: 1px solid silver;
+      padding-bottom: 10px;
+      font-size: 20px;
+    }
+    .total_price_with_tax {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      font-weight: 300;
+    }
+    .total_price {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+    }
+    .promotion_alert {
+      padding-top: 20px;
+      padding-bottom: 10px;
+      font-weight: 300;
+      font-size: 13px;
+    }
+    .free_deliver {
+      position: absolute;
+      background-color: #c2deb1;
+      padding: 15px;
+      width: fit-content;
+      right: 0;
+      bottom: -100px;
+      font-size: 15px;
+      font-weight: 300;
+    }
+    .purchase_btn {
+      color: white;
+      background-color: black;
+      padding: 10px 55px;
+    }
+  }
+  .clear_basket {
+    position: absolute;
+    margin-top: 700px;
+  }
+}
