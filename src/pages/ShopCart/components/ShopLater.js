@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './ShopLaterCard.scss';
 import ProductCard from './ProductCard';
 import { CartContext, BasketContext } from '../Contexts';
+import { Link } from 'react-router-dom';
 
 export default function ShopLaterCard() {
   const { items, setItems } = useContext(CartContext);
@@ -18,9 +19,10 @@ export default function ShopLaterCard() {
     let counts = items.filter(i => i.later === true).map(i => i.count);
     return counts.reduce((a, c) => a + c);
   };
+
   const clearBasket = () => {
     setIsNone(true);
-    setItems([...items.filter(i => i.later !== false)]);
+    setItems([...items.filter(i => i.later !== true)]);
   };
 
   useEffect(() => {
@@ -28,7 +30,6 @@ export default function ShopLaterCard() {
     items.filter(i => i.later === true).length > 0
       ? setIsNone(false)
       : setIsNone(true);
-    console.log(items.map(i => i.later));
   }, [items]);
 
   return (
@@ -37,7 +38,7 @@ export default function ShopLaterCard() {
         {isNone ||
         items.filter(i => i.later === true).map(i => i.count).length === 0 ? (
           <div className="none_description">
-            고객님의 장바구니가 비어있습니다.
+            고객님의 나중에 장보기가 비어있습니다.
           </div>
         ) : items.filter(i => i.count === 0).length !== 0 ? (
           setIsNone(true)

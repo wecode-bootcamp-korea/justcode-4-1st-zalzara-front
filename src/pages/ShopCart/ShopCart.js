@@ -11,7 +11,7 @@ export default function ShopCart() {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    setItems([
+    let data = [
       {
         id: 2,
         url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
@@ -19,7 +19,6 @@ export default function ShopCart() {
         name: '스프라이트 머시기',
         pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
-        later: true,
         count: 1,
       },
       {
@@ -29,10 +28,11 @@ export default function ShopCart() {
         name: '콜라',
         pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
-        later: false,
         count: 1,
       },
-    ]);
+    ];
+
+    setItems(data);
   }, []);
 
   const basketCount = later => {
@@ -57,9 +57,18 @@ export default function ShopCart() {
     }
   };
 
+  const itemsLaterDefault = Boolean => {
+    for (let i of items) {
+      i.later = Boolean;
+    }
+  };
+
+  itemsLaterDefault(false);
+
   return (
     <CartContext.Provider value={{ items, setItems }}>
       <div className="ShopCart">
+        {console.log(items)}
         <nav className="nav_bar">
           <div
             className={line === 'basket' ? 'basket' : 'basket_out'}
