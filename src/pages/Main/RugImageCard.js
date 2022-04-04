@@ -39,20 +39,20 @@ function RugImageCard({ rug }) {
               src={rug.imageUrl}
               onClick={handleClick}
             />
+            <div
+              className={style.pop__cart}
+              style={{ opacity: isHovering ? 1 : 0 }}
+              // style={{
+              //   backgroundColor: isColoring.background,
+              //   color: isColoring.fontColor,
+              // }}
+              // onMouseOver={mouseOnCart}
+              // onMouseOut={mouseOutCart}
+            >
+              <span className={style.get__in__cart}>장바구니에 담기</span>
+            </div>
           </div>
           {/* {isHovering ? ( */}
-          <div
-            className={style.pop__cart}
-            style={{ opacity: isHovering ? 1 : 0 }}
-            // style={{
-            //   backgroundColor: isColoring.background,
-            //   color: isColoring.fontColor,
-            // }}
-            // onMouseOver={mouseOnCart}
-            // onMouseOut={mouseOutCart}
-          >
-            <span className={style.get__in__cart}>장바구니에 담기</span>
-          </div>
           {/* ) : null} */}
           <div className={style.rug__info}>
             <h2 className={style.rug__name} onClick={handleClick}>
