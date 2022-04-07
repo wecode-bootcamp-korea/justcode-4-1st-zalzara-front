@@ -9,11 +9,11 @@ function Signup({ openLoginModal, closeModal }) {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [username, setUsername] = useState('');
-  const [policyAgreed, setpolicyAgreed] = useState('');
-  const [overseasPrivacy, setoverseasPrivacy] = useState('');
+  // const [policyAgreed, setpolicyAgreed] = useState('');
+  // const [overseasPrivacy, setoverseasPrivacy] = useState('');
 
   const handleSignup = () => {
-    fetch('/user/signup', {
+    fetch('localhost:8000/user/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,8 +22,8 @@ function Signup({ openLoginModal, closeModal }) {
         email: id,
         password: pw,
         username: username,
-        policyAgreed: policyAgreed,
-        overseasPrivacy: overseasPrivacy,
+        policyAgreed: true,
+        overseasPrivacy: true,
       }),
     })
       .then(res => res.json())
@@ -42,13 +42,13 @@ function Signup({ openLoginModal, closeModal }) {
     setUsername(e.target.value);
   };
 
-  const handlePolicyAgreedInput = e => {
-    setpolicyAgreed(e.target.value);
-  };
+  // const handlePolicyAgreedInput = e => {
+  //   setpolicyAgreed(e.target.value);
+  // };
 
-  const handleOverseasPrivacyInput = e => {
-    setoverseasPrivacy(e.target.value);
-  };
+  // const handleOverseasPrivacyInput = e => {
+  //   setoverseasPrivacy(e.target.value);
+  // };
 
   return (
     <div>
@@ -109,7 +109,7 @@ function Signup({ openLoginModal, closeModal }) {
                     type="checkbox"
                     required
                     // 입력할 때마다 state 를 변경
-                    onChange={handlePolicyAgreedInput}
+                    // onChange={handlePolicyAgreedInput}
                   />
                   <span>
                     * 개인정보의 수집 및 이용에 대한 동의. 자세히 보기.
@@ -120,7 +120,7 @@ function Signup({ openLoginModal, closeModal }) {
                     type="checkbox"
                     required
                     // 입력할 때마다 state 를 변경
-                    onChange={handleOverseasPrivacyInput}
+                    // onChange={handleOverseasPrivacyInput}
                   />
                   <span>* 개인정보의 국외 이전에 대한 동의. 자세히 보기.</span>
                 </div>
