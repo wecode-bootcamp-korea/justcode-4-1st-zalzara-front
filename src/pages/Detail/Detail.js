@@ -18,22 +18,8 @@ function Detail() {
       },
     ],
   });
-  const [blockColor, setBlockColor] = useState('white');
-  const [fontColor, setFontColor] = useState('black');
-  const [modalOpen, setModalOpen] = useState(false);
-  const [isLike, setIsLike] = useState(false);
-  const [likedProduct, setLikedProduct] = useState(0);
-
-  const params = useParams();
-  const urlId = params.id;
-
-  let productName = rugList.rugImage[0].name;
-  let productImg = rugList.rugImage[0].imageUrl; //슬기님 이미지랑 이미지 사이즈 달라서 화면 꺠짐... 어떤 사진 할지 정해야할듯
-  let productPrice = rugList.rugImage[0].price;
-  let productNumber = rugList.rugImage[0].product_number;
-  let productDescription = rugList.rugImage[0].description;
-  let productSize = rugList.rugImage[0].size;
-
+  // const [blockColor, setBlockColor] = useState('white');
+  // const [fontColor, setFontColor] = useState('black');
   useEffect(() => {
     fetch('/data/rugList.json')
       .then(res => res.json())
@@ -41,14 +27,38 @@ function Detail() {
         setRugList(data);
       });
   }, []);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isLike, setIsLike] = useState(false);
+  const [likedProduct, setLikedProduct] = useState(0);
+
+  const params = useParams();
+  const urlId = params.id;
+  console.log('a', urlId);
+
+  console.log('images: ', rugList.rugImage);
+  let productName;
+  let productImg;
+  let productPrice;
+  let productNumber;
+  let productDescription;
+  let productSize;
+  if (rugList.rugImage[urlId - 1] != null) {
+    productName = rugList.rugImage[urlId - 1].name;
+    productImg = rugList.rugImage[urlId - 1].imageUrl;
+    productPrice = rugList.rugImage[urlId - 1].price;
+    productNumber = rugList.rugImage[urlId - 1].product_number;
+    productDescription = rugList.rugImage[urlId - 1].description;
+    productSize = rugList.rugImage[urlId - 1].size;
+  }
 
   // 블럭 색상 변경 & 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
-  const handleBlockColor = e => {
-    blockColor === 'white' ? setBlockColor('black') : setBlockColor('white');
-  };
-  const handleFontColor = e => {
-    fontColor === 'black' ? setFontColor('white') : setFontColor('black');
-  };
+  // const handleBlockColor = e => {
+  //   blockColor === 'white' ? setBlockColor('black') : setBlockColor('white');
+  // };
+  // const handleFontColor = e => {
+  //   fontColor === 'black' ? setFontColor('white') : setFontColor('black');
+  // };
+
   // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
@@ -67,25 +77,22 @@ function Detail() {
           alert('성공!!!!');
         }
       });
-    // console.log(urlId);
   };
 
-  // 좋아요버튼
   const LikeHandler = () => {
-    setIsLike = !isLike;
-    console.log('좋아요:' + isLike);
+    isLike === false ? setIsLike(true) : setIsLike(false);
   };
+
   // [추천상품로직 구현 필요-백엔드] RecommendItemCard 컴포넌트
   function RecommendItemCard() {
     return (
       <div className="recommend-body">
         <div className="image-box">
-          <img alt="추천상품" src={productImg} />
-          {/* <img alt="추천상품" src="/images/VintageRug.jpeg" /> */}
+          {/* <img alt="추천상품" src={productImg} /> */}
         </div>
         <div className="description-box">
-          <span>{productName}</span>
-          <span>{productPrice}</span>
+          {/* <span>{productName}</span> */}
+          {/* <span>{productPrice}</span> */}
         </div>
       </div>
     );
@@ -103,8 +110,7 @@ function Detail() {
           >
             <img
               alt="이미지 섹션"
-              // src={productImg}
-              src="../images/FetchDetailRug.jpeg"
+              src={productImg}
               // onClick={openModal}
             />
           </div>
@@ -116,11 +122,12 @@ function Detail() {
                 <h1 className="product-name">{productName}</h1>
                 <span className="product-price">{productPrice}</span>
                 <span className="product-number">제품번호 {productNumber}</span>
-              </div>
-              <div className="content-block">
-                <span className="description">{productDescription}</span>
+                <span className="product-description">
+                  {productDescription}
+                </span>
               </div>
 
+              {/* 사이즈 섹션 */}
               <div className="action-block">
                 <div className="slide">
                   <div className="size-header">
@@ -144,25 +151,28 @@ function Detail() {
                   className="add-cart"
                   //장바구니 버튼 클릭시 카트에 id 보내기
                   onClick={addCart}
-                  onMouseOver={handleBlockColor}
-                  onMouseOut={handleBlockColor}
-                  style={{
-                    backgroundColor: blockColor,
-                    transition: '0.3s',
-                  }}
+                  // onMouseOver={handleBlockColor}
+                  // onMouseOut={handleBlockColor}
+                  // style={{
+                  //   backgroundColor: blockColor,
+                  //   transition: '0.3s',
+                  // }}
                 >
-                  <div
+                  {/* <div
                     className="add-cart-text"
-                    onMouseOver={handleFontColor}
-                    onMouseOut={handleFontColor}
+                    // onMouseOver={handleFontColor}
+                    // onMouseOut={handleFontColor}
                     onClick={likedProduct}
-                    style={{
-                      color: fontColor,
-                      transition: '0.3s',
-                    }}
-                  >
-                    <span>장바구니 담기 ({productPrice})</span>
-                  </div>
+                    // style={{
+                    //   color: fontColor,
+                    //   transition: '0.3s',
+                    // }}
+                  > */}
+                  {/* //id 가져와서 유동라우트 만들기 */}
+                  <span className="add-cart-text">
+                    장바구니 담기 ({productPrice})
+                  </span>
+                  {/* </div> */}
                 </div>
                 <div className="recommend-item-box">
                   <div className="recommend-header">

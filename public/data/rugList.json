@@ -21,7 +21,7 @@
     {
       "id": 3,
       "name": "웨이브 울 러그",
-      "imageUrl": "/images/WaveWoolRug.jpg",
+      "imageUrl": "/images/WaveWoolRug.jpeg",
       "price": "399,000 원 - 899,000 원",
       "product_number": 2318029,
       "description": "웨이브 텍스처 마감 울 소재 러그",
@@ -30,7 +30,7 @@
     {
       "id": 4,
       "name": "플렉트 러그",
-      "imageUrl": "/images/FlectRug.jpg",
+      "imageUrl": "/images/FlectRug.jpeg",
       "price": "69,000 원 - 359,000 원",
       "product_number": 9720029,
       "description": "플렉트 마감 주트와 면 소재가 매치된 러그.",
@@ -39,7 +39,7 @@
     {
       "id": 5,
       "name": "비스코스&바나나 리브즈 러그",
-      "imageUrl": "/images/Viscose&BananaRug.jpg",
+      "imageUrl": "/images/Viscose&BananaRug.jpeg",
       "price": "699,000 원 - 899,000 원",
       "product_number": 3316029,
       "description": "비스코스와 바나나 잎 소재의 내추럴 컬러 러그.",

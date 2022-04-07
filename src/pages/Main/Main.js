@@ -8,7 +8,7 @@ function Main() {
   const [rugList, setRugList] = useState({
     rugImage: [],
   });
-
+  console.log(rugList.rugImage);
   // const navigate = useNavigate();
 
   useEffect(() => {

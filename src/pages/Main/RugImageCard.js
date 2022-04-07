@@ -38,7 +38,7 @@ function RugImageCard({ rug }) {
               alt="rug"
               className={style.rug__img}
               src={rug.imageUrl}
-              onClick={() => navigate('./detail')}
+              onClick={() => navigate('/detail/' + rug.id)}
             />
             <div
               className={style.pop__cart}
@@ -56,12 +56,7 @@ function RugImageCard({ rug }) {
           {/* {isHovering ? ( */}
           {/* ) : null} */}
           <div className={style.rug__info}>
-            <h2
-              className={style.rug__name}
-              onClick={() => navigate('./detail')}
-            >
-              {rug.name}
-            </h2>
+            <h2 className={style.rug__name}>{rug.name}</h2>
             <p className={style.rug__price}>{rug.price}</p>
           </div>
         </div>
