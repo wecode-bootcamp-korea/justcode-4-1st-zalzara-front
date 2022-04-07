@@ -151,28 +151,10 @@ function Detail() {
                   className="add-cart"
                   //장바구니 버튼 클릭시 카트에 id 보내기
                   onClick={addCart}
-                  // onMouseOver={handleBlockColor}
-                  // onMouseOut={handleBlockColor}
-                  // style={{
-                  //   backgroundColor: blockColor,
-                  //   transition: '0.3s',
-                  // }}
                 >
-                  {/* <div
-                    className="add-cart-text"
-                    // onMouseOver={handleFontColor}
-                    // onMouseOut={handleFontColor}
-                    onClick={likedProduct}
-                    // style={{
-                    //   color: fontColor,
-                    //   transition: '0.3s',
-                    // }}
-                  > */}
-                  {/* //id 가져와서 유동라우트 만들기 */}
                   <span className="add-cart-text">
                     장바구니 담기 ({productPrice})
                   </span>
-                  {/* </div> */}
                 </div>
                 <div className="recommend-item-box">
                   <div className="recommend-header">
@@ -200,7 +182,7 @@ function Detail() {
           close={() => setModalOpen(false)}
           header="Modal heading"
         >
-          <img alt="확대된 이미지" src="../images/FetchDetailRug.jpeg" />
+          <img alt="확대된 이미지" src={productImg} />
         </Modal>
       </div>
 
