@@ -30,9 +30,19 @@ function Login({
                   </p>
                 </div>
               </div>
-              <div className="login-form">
-                <input className="id" type="text" placeholder="이메일*" />
-                <input className="pw" type="password" placeholder="비밀번호*" />
+              <form className="login-form" action="./user/login" method="POST">
+                <input
+                  className="id"
+                  type="text"
+                  name="email"
+                  placeholder="이메일*"
+                />
+                <input
+                  className="pw"
+                  type="password"
+                  name="password"
+                  placeholder="비밀번호*"
+                />
                 <p className="forgot-pw">
                   <span className="forgot-pw-content">
                     비밀번호를 잊으셨습니까?
@@ -54,7 +64,7 @@ function Login({
                     개인 정보 정책에 따라 계정과 연동하는 것에 동의합니다.
                   </p>
                 </div>
-              </div>
+              </form>
             </div>
 
             {/* 로그인 오른쪽 부분 */}
