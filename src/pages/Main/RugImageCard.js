@@ -9,10 +9,11 @@ function RugImageCard({ rug }) {
   //   background: 'rgba(255, 255, 255, 0.781)',
   //   fontColor: 'black',
   // });
+
   const navigate = useNavigate();
-  function handleClick() {
-    navigate('./detail');
-  } // 클릭하면 detail페이지로 이동하기
+  // function handleClick() {
+  //   navigate('./detail');}
+  // 클릭하면 detail페이지로 이동하기
 
   // const [fontColor, setFontColor] = useState('white');
   // 호버 했을 때 isHovering이 true가 되는 함수
@@ -37,7 +38,7 @@ function RugImageCard({ rug }) {
               alt="rug"
               className={style.rug__img}
               src={rug.imageUrl}
-              onClick={handleClick}
+              onClick={() => navigate('./detail')}
             />
           </div>
           {/* {isHovering ? ( */}
@@ -55,7 +56,10 @@ function RugImageCard({ rug }) {
           </div>
           {/* ) : null} */}
           <div className={style.rug__info}>
-            <h2 className={style.rug__name} onClick={handleClick}>
+            <h2
+              className={style.rug__name}
+              onClick={() => navigate('./detail')}
+            >
               {rug.name}
             </h2>
             <p className={style.rug__price}>{rug.price}</p>
