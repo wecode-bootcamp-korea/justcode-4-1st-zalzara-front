@@ -18,7 +18,7 @@ function Main() {
         setRugList(data);
       });
   }, []);
-  console.log(rugList);
+
   return (
     <div className={style.Main}>
       <img alt="main" src="../images/mainImage.jpg" />
@@ -54,3 +54,4 @@ function Main() {
 }
 
 export default Main;
+
