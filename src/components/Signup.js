@@ -32,23 +32,38 @@ function Signup({ openLoginModal, closeModal }) {
                 <span>회사</span>
               </div>
             </div>
-            <div className="signup-form">
-              <input className="name" type="text" placeholder="이름*" />
-              <input className="id" type="text" placeholder="이메일*" />
-              <input className="pw" type="password" placeholder="비밀번호*" />
+            <form className="signup-form" action="./user/signup" method="POST">
+              <input
+                className="name"
+                type="text"
+                name="username"
+                placeholder="이름*"
+              />
+              <input
+                className="id"
+                type="text"
+                name="email"
+                placeholder="이메일*"
+              />
+              <input
+                className="pw"
+                type="password"
+                name="password"
+                placeholder="비밀번호*"
+              />
               <div className="consents">
                 <div className="consents-checkbox">
                   <input type="checkbox" />
                   <span>모두동의</span>
                 </div>
                 <div className="consents-checkbox">
-                  <input type="checkbox" />
+                  <input type="checkbox" name="policyAgreed" required />
                   <span>
                     * 개인정보의 수집 및 이용에 대한 동의. 자세히 보기.
                   </span>
                 </div>
                 <div className="consents-checkbox">
-                  <input type="checkbox" />
+                  <input type="checkbox" name="overseasPrivacy" required />
                   <span>* 개인정보의 국외 이전에 대한 동의. 자세히 보기.</span>
                 </div>
                 <div className="consents-checkbox">
@@ -60,7 +75,7 @@ function Signup({ openLoginModal, closeModal }) {
                 </div>
               </div>
               <button className="make-account">계정 만들기</button>
-            </div>
+            </form>
           </div>
         </section>
       </div>
