@@ -14,7 +14,7 @@ function Login({
   const [pw, setPw] = useState('');
 
   const handleLogin = () => {
-    fetch('./user/login', {
+    fetch('http://localhost:8000/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

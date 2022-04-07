@@ -13,7 +13,7 @@ function Signup({ openLoginModal, closeModal }) {
   // const [overseasPrivacy, setoverseasPrivacy] = useState('');
 
   const handleSignup = () => {
-    fetch('localhost:8000/user/signup', {
+    fetch('http://localhost:8000/user/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
