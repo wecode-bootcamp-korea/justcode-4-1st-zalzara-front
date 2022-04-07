@@ -1,44 +1,80 @@
-$serchText: 15px;
-$spaceFromSide: 20px;
+// $serchText: 15px;
+// $spaceFromSide: 20px;
 
 .Header {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+  display: flex;
+  justify-content: space-between;
   position: fixed;
-  top: 30px;
+  padding: 2rem 1rem;
   left: 0;
   right: 0;
   z-index: 1;
   background-color: inherit;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  z-index: 1;
+  background-color: white;
 
-  button {
-    border: none;
+  .menu-logo-box {
+    // background-color: yellow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .homeName {
-    margin-left: $spaceFromSide;
-    font-size: 30px;
-    .menuBar {
-      margin-right: 25px;
+  .search-login-box {
+    display: flex;
+    justify-content: space-between;
+    .search-box {
+      margin-right: 3rem;
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
     }
   }
-  .searchBox {
-    display: flex;
-    font-size: $serchText;
-    align-items: flex-end;
-    background-color: inherit;
-    .line {
-      height: 1px;
-      padding-right: 150px;
-      background-color: black;
-      margin-top: $serchText;
-    }
-  }
-  .userInfo {
-    display: flex;
-    align-items: flex-end;
-    margin-right: $spaceFromSide;
+  //로고 마우스 오버 애니메이션
+  .menu-logo-box:hover {
     cursor: pointer;
-    font-size: 13px;
+    .logo {
+      margin-left: -2rem;
+    }
+    .menu-bar {
+      color: transparent;
+    }
+  }
+
+  .menu-bar {
+    margin-left: 0.5rem;
+    transition: 0.25s;
+  }
+
+  .logo {
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    width: 20rem;
+    transition: 0.6s;
+  }
+
+  .user-info-box {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 0.6rem;
+
+    span {
+      font-size: 0.7rem;
+    }
+    .login-btn {
+      display: flex;
+      align-content: space-between;
+      margin-right: 1em;
+      cursor: pointer;
+    }
+    .cart-btn {
+      display: flex;
+      align-items: space-between;
+      cursor: pointer;
+    }
   }
 }

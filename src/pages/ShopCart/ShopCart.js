@@ -20,6 +20,7 @@ export default function ShopCart() {
         pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
         count: 1,
+        later: false,
       },
       {
         id: 2,
@@ -29,12 +30,12 @@ export default function ShopCart() {
         pid: `2132/1323/123`,
         size: '더블/퀸 (230 x 250)',
         count: 1,
+        later: false,
       },
     ];
 
     setItems(data);
   }, []);
-
   const basketCount = later => {
     let count = 0;
     // eslint-disable-next-line array-callback-return
@@ -56,19 +57,9 @@ export default function ShopCart() {
       return setCard(<ShopLaterCard />);
     }
   };
-
-  const itemsLaterDefault = Boolean => {
-    for (let i of items) {
-      i.later = Boolean;
-    }
-  };
-
-  itemsLaterDefault(false);
-
   return (
     <CartContext.Provider value={{ items, setItems }}>
       <div className="ShopCart">
-        {console.log(items)}
         <nav className="nav_bar">
           <div
             className={line === 'basket' ? 'basket' : 'basket_out'}

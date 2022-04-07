@@ -39,7 +39,8 @@ export default function BasketCard() {
           <div className="none_description">
             고객님의 장바구니가 비어있습니다.
           </div>
-        ) : items.filter(i => i.count !== 0).length === 0 ? (
+        ) : items.filter(i => i.later === false).filter(i => i.count !== 0)
+            .length === 0 ? (
           setIsNone(true)
         ) : (
           <>
