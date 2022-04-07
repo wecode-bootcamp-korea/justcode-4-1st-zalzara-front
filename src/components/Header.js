@@ -1,14 +1,13 @@
 import './Header.scss';
-import {
-  AiOutlineMenu,
-  AiOutlineUser,
-  AiOutlineShopping,
-} from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
+import { VscMenu } from 'react-icons/vsc';
 import { useState } from 'react';
 import Login from './Login';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [showLoginModal, setShowLoginModal] = useState('closed');
+  const navigate = useNavigate();
 
   const openLoginModal = () => {
     setShowLoginModal('login');
@@ -26,21 +25,28 @@ function Header() {
   return (
     <>
       <div className="Header">
-        <div className="homeName">
-          <AiOutlineMenu className="menuBar" />
-          Z&nbsp;A&nbsp;R&nbsp;A &nbsp;&nbsp;H&nbsp;O&nbsp;M&nbsp;E
-        </div>
-        <button className="searchBox">
-          검색 <div className="line" />
-        </button>
-        <div className="userInfo">
-          <div className="login-btn" onClick={openLoginModal}>
-            <AiOutlineUser size="20" />
-            로그인&nbsp;&nbsp;
+        <div className="menu-logo-box">
+          <VscMenu className="menu-bar" size="24" />
+          <div className="logo" onClick={() => navigate('/')}>
+            <img src="/images/logo.png" alt="logo" />
           </div>
-          <div className="cart">
-            <AiOutlineShopping size="20" />
-            장바구니&nbsp;(0)
+        </div>
+        <div className="search-login-box">
+          <button className="search-box">검색____________________</button>
+
+          <div className="user-info-box">
+            <div className="login-btn" onClick={openLoginModal}>
+              <AiOutlineUser size="20" />
+              <div>
+                <span>로그인</span>
+              </div>
+            </div>
+            <div className="cart-btn" onClick={() => navigate('/shop-cart')}>
+              <AiOutlineShopping size="20" />
+              <div>
+                <span>장바구니</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
