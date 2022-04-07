@@ -27,24 +27,25 @@ function Header() {
       <div className="Header">
         <div className="menu-logo-box">
           <VscMenu className="menu-bar" size="24" />
-          <div className="logo">
+          <div className="logo" onClick={() => navigate('/')}>
             <img src="/images/logo.png" alt="logo" />
           </div>
         </div>
+        <div className="search-login-box">
+          <button className="search-box">검색____________________</button>
 
-        <button className="search-box">검색____________________</button>
-
-        <div className="user-info-box">
-          <div className="login-btn" onClick={openLoginModal}>
-            <AiOutlineUser size="20" />
-            <div>
-              <span>로그인</span>
+          <div className="user-info-box">
+            <div className="login-btn" onClick={openLoginModal}>
+              <AiOutlineUser size="20" />
+              <div>
+                <span>로그인</span>
+              </div>
             </div>
-          </div>
-          <div className="cart-btn" onClick={() => navigate('/shop-cart')}>
-            <AiOutlineShopping size="20" />
-            <div>
-              <span>장바구니</span>
+            <div className="cart-btn" onClick={() => navigate('/shop-cart')}>
+              <AiOutlineShopping size="20" />
+              <div>
+                <span>장바구니</span>
+              </div>
             </div>
           </div>
         </div>

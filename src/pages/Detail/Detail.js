@@ -2,26 +2,42 @@ import React from 'react';
 import './Detail.scss';
 import { useEffect, useState } from 'react';
 import Modal from './Modal.js';
-import Header from '../../components/Header';
-// import { useNavigate } from 'react-router-dom';
+import { IoHeartOutline, IoHeart } from 'react-icons/io5';
 
 function Detail() {
-  const [rugList, setRugList] = useState([]);
+  const [rugList, setRugList] = useState({
+    rugImage: [
+      {
+        id: 0,
+        name: '',
+        imageUrl: '',
+        price: '',
+        product_number: 0,
+        description: '',
+      },
+    ],
+  });
   const [blockColor, setBlockColor] = useState('white');
   const [fontColor, setFontColor] = useState('black');
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLike, setIsLike] = useState(false);
+  const [likedProduct, setLikedProduct] = useState(0);
 
-  // const navigate = useNavigate();
+  let productName = rugList.rugImage[0].name;
+  let productImg = rugList.rugImage[0].imageUrl; //슬기님 이미지랑 이미지 사이즈 달라서 화면 꺠짐... 어떤 사진 할지 정해야할듯
+  let productPrice = rugList.rugImage[0].price;
+  let productNumber = rugList.rugImage[0].product_number;
+  let productDescription = rugList.rugImage[0].description;
+  let productSize = rugList.rugImage[0].size;
 
-  const data = {
-    id: 1,
-    name: '패치 디테일 주트 러그',
-    imgUrl: '../images/FetchDetailRug.jpeg',
-    price: '699,000 원',
-    description: '주트 패치워크 소재의 내추럴 컬러 러그',
-    size: '160x230cm',
-    product_id: 1,
-  };
+  useEffect(() => {
+    fetch('/data/rugList.json')
+      .then(res => res.json())
+      .then(data => {
+        setRugList(data);
+      });
+  }, []);
+  console.log(rugList);
 
   // 블럭 색상 변경 & 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
   const handleBlockColor = e => {
@@ -30,42 +46,28 @@ function Detail() {
   const handleFontColor = e => {
     fontColor === 'black' ? setFontColor('white') : setFontColor('black');
   };
-  // 장바구니 담기 클릭 이벤트
-  const addCart = () => {};
-
-  // //[모달] 핸들러
-  // const ModalHandler = () => {
-  //   setModalOpen(prev => !prev);
-  // };
-
-  //[모달] 핸들러
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
+  // 장바구니 클릭시 상품 id 저장
+  const addCart = () => {
+    // setLikedProduct(data[0].id);
+    console.log(`${likedProduct}을 장바구니에 담았습니다.`);
   };
 
-  //목데이터 가져오기
-  useEffect(() => {
-    fetch('/data/rugList.json')
-      .then(res => res.json())
-      .then(data => {
-        setRugList(data);
-      });
-  }, []);
-
+  // 좋아요버튼
+  const LikeHandler = () => {
+    setIsLike = !isLike;
+    console.log('좋아요:' + isLike);
+  };
   // [추천상품로직 구현 필요-백엔드] RecommendItemCard 컴포넌트
   function RecommendItemCard() {
     return (
       <div className="recommend-body">
         <div className="image-box">
-          {/* <img alt="추천상품" src={productImg} /> */}
-          <img alt="추천상품" src="/images/VintageRug.jpeg" />
+          <img alt="추천상품" src={productImg} />
+          {/* <img alt="추천상품" src="/images/VintageRug.jpeg" /> */}
         </div>
         <div className="description-box">
-          <span>플렉트러그</span>
-          <span>150,000 원</span>
+          <span>{productName}</span>
+          <span>{productPrice}</span>
         </div>
       </div>
     );
@@ -73,11 +75,14 @@ function Detail() {
 
   return (
     <div>
-      <Header />
       <section className="main">
         <div className="content-container">
           {/* 이미지 모달 트리거 */}
-          <div className="image-section" onClick={openModal} id="img">
+          <div
+            className="image-section"
+            onClick={() => setModalOpen(true)}
+            id="img"
+          >
             <img
               alt="이미지 섹션"
               // src={productImg}
@@ -90,37 +95,32 @@ function Detail() {
           <div className="content-section">
             <div className="sticky">
               <div className="header-box">
-                {/* 목데이터 
                 <h1 className="product-name">{productName}</h1>
-                <span className="product-price">{productPrice}</span> */}
-
-                <h1 className="product-name">패치 디테일 주트 러그</h1>
-                <span className="product-price">699,000 원</span>
-                <span className="product-number">제품번호</span>
+                <span className="product-price">{productPrice}</span>
+                <span className="product-number">제품번호 {productNumber}</span>
               </div>
               <div className="content-block">
-                {/* 목데이터 
-                <span className="description">{productDescription}</span> */}
-                <span className="description">
-                  주트 패치워크 소재의 내추럴 컬러 러그
-                </span>
+                <span className="description">{productDescription}</span>
               </div>
+
               <div className="action-block">
-                <div className="size-header-box">
-                  <span>사이즈</span>
-                </div>
-                <div className="size-detail">
-                  <div className="size">
-                    {/* 목데이터 */}
-                    {/* <span>{rugList.rugImage[0].size}</span> */}
-                    <span>160x230cm</span>
+                <div className="slide">
+                  <div className="size-header">
+                    <span>사이즈</span>
                   </div>
-                  <div className="price">
-                    {/* 목데이터 */}
-                    {/* <span>{rugList.rugImage[0].price}</span> */}
-                    <span>699,000 원</span>
+                  <div className="size-detail">
+                    <div className="size">
+                      <span>{productSize}</span>
+                      <div className="icon" onClick={LikeHandler}>
+                        {isLike ? <IoHeart /> : <IoHeartOutline />}
+                      </div>
+                    </div>
+                    <div className="price">
+                      <span>{productPrice}</span>
+                    </div>
                   </div>
                 </div>
+
                 {/* 마우스 오버시 색상 변경 */}
                 <div
                   className="add-cart"
@@ -136,25 +136,28 @@ function Detail() {
                     className="add-cart-text"
                     onMouseOver={handleFontColor}
                     onMouseOut={handleFontColor}
+                    onClick={likedProduct}
                     style={{
                       color: fontColor,
                       transition: '0.3s',
                     }}
                   >
-                    {/* 목데이터 */}
-                    {/* <span>장바구니 담기 ({productName})</span> */}
-                    <span>장바구니 담기 (699,000 원)</span>
+                    <span>장바구니 담기 ({productPrice})</span>
                   </div>
                 </div>
                 <div className="recommend-item-box">
                   <div className="recommend-header">
                     <span>추천 상품</span>
                     <div className="button-box">
-                      <span className="button-left">&#60;</span>
-                      <span className="button-right">&#62;</span>
+                      <button className="button-left">&#60;</button>
+                      <button className="button-right">&#62;</button>
                     </div>
                   </div>
-                  <RecommendItemCard />
+                  <div className="recommend-card-box">
+                    <RecommendItemCard />
+                    <RecommendItemCard />
+                    <RecommendItemCard />
+                  </div>
                 </div>
               </div>
             </div>
@@ -163,12 +166,16 @@ function Detail() {
       </section>
 
       <div>
-        <Modal open={modalOpen} close={closeModal} header="Modal heading">
+        <Modal
+          open={modalOpen}
+          close={() => setModalOpen(false)}
+          header="Modal heading"
+        >
           <img alt="확대된 이미지" src="../images/FetchDetailRug.jpeg" />
         </Modal>
       </div>
 
-      <section class="detail-footer">
+      <section className="detail-footer">
         <span>
           <b className="bold">제조업체: </b>
           Zara Home S.A.|
