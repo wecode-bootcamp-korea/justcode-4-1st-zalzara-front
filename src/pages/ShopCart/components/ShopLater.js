@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import './ShopLaterCard.scss';
 import ProductCard from './ProductCard';
 import { CartContext, BasketContext } from '../Contexts';
-import { Link } from 'react-router-dom';
 
 export default function ShopLaterCard() {
   const { items, setItems } = useContext(CartContext);
   const [isNone, setIsNone] = useState(true);
+  const [allCounts, setAllCounts] = useState(0);
 
   const totalPrice = () => {
     let prices = items
@@ -35,12 +35,12 @@ export default function ShopLaterCard() {
   return (
     <BasketContext.Provider value={{ items, setItems }}>
       <div className="BasketCard">
-        {isNone ||
-        items.filter(i => i.later === true).map(i => i.count).length === 0 ? (
+        {isNone ? (
           <div className="none_description">
             고객님의 나중에 장보기가 비어있습니다.
           </div>
-        ) : items.filter(i => i.count === 0).length !== 0 ? (
+        ) : items.filter(i => i.later === true).filter(i => i.count !== 0)
+            .length === 0 ? (
           setIsNone(true)
         ) : (
           <>
