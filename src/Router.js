@@ -14,8 +14,8 @@ function Router() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/categories" element={<CategoryList />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/main" element={<CategoryList />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/shop-cart" element={<ShopCart />} />
       </Routes>
       <Footer />

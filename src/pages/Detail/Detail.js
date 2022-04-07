@@ -3,6 +3,7 @@ import './Detail.scss';
 import { useEffect, useState } from 'react';
 import Modal from './Modal.js';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
+import { useParams } from 'react-router-dom';
 
 function Detail() {
   const [rugList, setRugList] = useState({
@@ -23,6 +24,9 @@ function Detail() {
   const [isLike, setIsLike] = useState(false);
   const [likedProduct, setLikedProduct] = useState(0);
 
+  const params = useParams();
+  const urlId = params.id;
+
   let productName = rugList.rugImage[0].name;
   let productImg = rugList.rugImage[0].imageUrl; //슬기님 이미지랑 이미지 사이즈 달라서 화면 꺠짐... 어떤 사진 할지 정해야할듯
   let productPrice = rugList.rugImage[0].price;
@@ -37,7 +41,6 @@ function Detail() {
         setRugList(data);
       });
   }, []);
-  console.log(rugList);
 
   // 블럭 색상 변경 & 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
   const handleBlockColor = e => {
@@ -46,10 +49,25 @@ function Detail() {
   const handleFontColor = e => {
     fontColor === 'black' ? setFontColor('white') : setFontColor('black');
   };
-  // 장바구니 클릭시 상품 id 저장
+  // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
-    // setLikedProduct(data[0].id);
-    console.log(`${likedProduct}을 장바구니에 담았습니다.`);
+    fetch('http://localhost:8000/shop-cart/add-cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_id: urlId,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        if (result.message === {}) {
+          alert('성공!!!!');
+        }
+      });
+    // console.log(urlId);
   };
 
   // 좋아요버튼
@@ -124,6 +142,7 @@ function Detail() {
                 {/* 마우스 오버시 색상 변경 */}
                 <div
                   className="add-cart"
+                  //장바구니 버튼 클릭시 카트에 id 보내기
                   onClick={addCart}
                   onMouseOver={handleBlockColor}
                   onMouseOut={handleBlockColor}
