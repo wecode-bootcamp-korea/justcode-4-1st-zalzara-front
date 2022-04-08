@@ -1,4 +1,7 @@
 .CategoryList {
   display: flex;
   flex-wrap: wrap;
+  .Loading {
+    width: 100vw;
+  }
 }

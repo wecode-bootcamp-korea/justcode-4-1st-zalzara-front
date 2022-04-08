@@ -7,6 +7,7 @@ import ShopCart from './pages/ShopCart/ShopCart';
 import CategoryList from './pages/CategoryList/CategoryList';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import List from './pages/List/List';
 
 function Router() {
   return (

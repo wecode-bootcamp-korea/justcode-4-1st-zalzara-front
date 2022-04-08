@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Loading from '../Loading/Loading';
 import CategoryCard from './CategoryCard';
 import './CategoryList.scss';
 
