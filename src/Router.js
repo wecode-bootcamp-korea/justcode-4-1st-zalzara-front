@@ -7,6 +7,7 @@ import ShopCart from './pages/ShopCart/ShopCart';
 import CategoryList from './pages/CategoryList/CategoryList';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import List from './pages/List/List';
 
 function Router() {
   return (
@@ -14,8 +15,8 @@ function Router() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/categories" element={<CategoryList />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/main" element={<CategoryList />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/shop-cart" element={<ShopCart />} />
       </Routes>
       <Footer />
