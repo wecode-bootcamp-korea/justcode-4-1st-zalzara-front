@@ -11,19 +11,6 @@ function RugImageCard({ rug }) {
   // });
 
   const navigate = useNavigate();
-  // function handleClick() {
-  //   navigate('./detail');}
-  // 클릭하면 detail페이지로 이동하기
-
-  // const [fontColor, setFontColor] = useState('white');
-  // 호버 했을 때 isHovering이 true가 되는 함수
-  // const mouseOnCart = () => {
-  //   setIsColoring({ background: 'black', fontColor: 'white' });
-  // };
-  // const mouseOutCart = () => {
-  //   setIsColoring({ background: 'grey', fontColor: 'black' });
-  // };
-  // // 마우스를 뗐을 때 isHovering이 false가 되는 함수
 
   return (
     <div
@@ -38,30 +25,15 @@ function RugImageCard({ rug }) {
               alt="rug"
               className={style.rug__img}
               src={rug.imageUrl}
-              onClick={() => navigate('./detail')}
+              onClick={() => navigate('/detail/' + rug.id)}
             />
-            <div
-              className={style.pop__cart}
-              style={{ opacity: isHovering ? 1 : 0 }}
-              // style={{
-              //   backgroundColor: isColoring.background,
-              //   color: isColoring.fontColor,
-              // }}
-              // onMouseOver={mouseOnCart}
-              // onMouseOut={mouseOutCart}
-            >
+            <div className={style.pop__cart}>
               <span className={style.get__in__cart}>장바구니에 담기</span>
             </div>
           </div>
-          {/* {isHovering ? ( */}
-          {/* ) : null} */}
+
           <div className={style.rug__info}>
-            <h2
-              className={style.rug__name}
-              onClick={() => navigate('./detail')}
-            >
-              {rug.name}
-            </h2>
+            <h2 className={style.rug__name}>{rug.name}</h2>
             <p className={style.rug__price}>{rug.price}</p>
           </div>
         </div>

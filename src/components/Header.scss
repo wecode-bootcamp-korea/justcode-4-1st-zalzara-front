@@ -34,6 +34,7 @@
     background-color: white;
     overflow: scroll;
     transition: 0.5s;
+
     ul {
       padding-left: 1rem;
       margin-top: 6rem;
@@ -42,6 +43,13 @@
       padding: 0.3rem;
       font-size: 0.8rem;
       cursor: pointer;
+      color: black;
+    }
+    li:hover {
+      color: #a7a7a7;
+    }
+    .special-price {
+      color: rgb(179, 0, 0);
     }
   }
   .search-login-box {
