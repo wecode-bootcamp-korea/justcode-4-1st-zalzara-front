@@ -6,7 +6,7 @@ import { CartContext } from '../Contexts';
 export default function ProductCard({ product }) {
   const { items, setItems } = useContext(CartContext);
 
-  const [count, setCount] = useState(product.count);
+  let [count, setCount] = useState(product.count);
   product.count = count;
 
   const [totalPrice, setTotalPrice] = useState(count * product.price);
@@ -45,13 +45,14 @@ export default function ProductCard({ product }) {
         <div className="count_box">
           <button
             onClick={() => {
-              setCount(product.count--);
+              // eslint-disable-next-line no-const-assign
+              setCount(count--);
             }}
           >
             -
           </button>
-          <div className="count">{product.count}</div>
-          <button onClick={() => setCount(product.count + 1)}>+</button>
+          <div className="count">{count}</div>
+          <button onClick={() => setCount(count + 1)}>+</button>
         </div>
       </div>
     </article>

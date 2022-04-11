@@ -6,7 +6,6 @@ import { CartContext, BasketContext } from '../Contexts';
 export default function ShopLaterCard() {
   const { items, setItems } = useContext(CartContext);
   const [isNone, setIsNone] = useState(true);
-  const [allCounts, setAllCounts] = useState(0);
 
   const totalPrice = () => {
     let prices = items
@@ -39,8 +38,9 @@ export default function ShopLaterCard() {
           <div className="none_description">
             고객님의 나중에 장보기가 비어있습니다.
           </div>
-        ) : items.filter(i => i.later === true).filter(i => i.count !== 0)
-            .length === 0 ? (
+        ) : items.filter(i => {
+            return i.later === true && i.count !== 0;
+          }).length === 0 ? (
           setIsNone(true)
         ) : (
           <>

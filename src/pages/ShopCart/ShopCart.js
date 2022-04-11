@@ -9,6 +9,12 @@ export default function ShopCart() {
   const [card, setCard] = useState(<BasketCard />);
   const [line, setLine] = useState('basket');
 
+  const fetchData = async () => {
+    const response = await fetch('', { method: 'GET' });
+    const getData = await response.json();
+    // if(getData) {setData(getData); setLoading(false)};
+  };
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     let data = [
@@ -36,6 +42,7 @@ export default function ShopCart() {
 
     setItems(data);
   }, []);
+
   const basketCount = later => {
     let count = 0;
     // eslint-disable-next-line array-callback-return
