@@ -8,41 +8,23 @@ export default function ShopCart() {
   const [items, setItems] = useState([]);
   const [card, setCard] = useState(<BasketCard />);
   const [line, setLine] = useState('basket');
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await fetch('', { method: 'GET' });
+    const response = await fetch('http://localhost:8800/shop-cart', {
+      method: 'GET',
+    });
     const getData = await response.json();
-    // if(getData) {setData(getData); setLoading(false)};
+
+    if (getData) {
+      setLoading(false);
+      setItems(getData);
+    }
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    let data = [
-      {
-        id: 1,
-        url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
-        price: 412414,
-        name: '스프라이트 머시기',
-        pid: `2132/1323/123`,
-        size: '더블/퀸 (230 x 250)',
-        count: 1,
-        later: false,
-      },
-      {
-        id: 2,
-        url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
-        price: 123231,
-        name: '콜라',
-        pid: `2132/1323/123`,
-        size: '더블/퀸 (230 x 250)',
-        count: 1,
-        later: false,
-      },
-    ];
-
-    setItems(data);
+    fetchData();
   }, []);
-
   const basketCount = later => {
     let count = 0;
     // eslint-disable-next-line array-callback-return
@@ -64,6 +46,7 @@ export default function ShopCart() {
       return setCard(<ShopLaterCard />);
     }
   };
+
   return (
     <CartContext.Provider value={{ items, setItems }}>
       <div className="ShopCart">

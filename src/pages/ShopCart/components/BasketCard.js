@@ -50,9 +50,7 @@ export default function BasketCard() {
                 <ProductCard key={product.id} product={product} />
               ) : null
             )}
-            <button className="clear_basket" onClick={clearBasket}>
-              장바구니 비우기
-            </button>
+
             <div className="order_box">
               <div className="total_items">{totalCounts()} 제품</div>
               <div className="total_price_with_tax">
@@ -66,6 +64,9 @@ export default function BasketCard() {
               </span>
               <button className="purchase_btn">주문하기</button>
               <div className="free_deliver">무료 매장 배송 가능</div>
+              <button className="clear_basket" onClick={clearBasket}>
+                장바구니 비우기
+              </button>
             </div>
           </>
         )}

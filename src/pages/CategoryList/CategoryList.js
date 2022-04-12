@@ -7,7 +7,7 @@ export default function CategoryList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8800/categories', {
+    fetch('http://localhost:8000/categories', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

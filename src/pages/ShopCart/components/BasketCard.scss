@@ -1,9 +1,9 @@
 .BasketCard {
   margin: 0 50px;
   position: relative;
-  height: 90vh; //  지워야함!
-  display: flex;
 
+  display: flex;
+  flex-wrap: wrap;
   .none_description {
     height: 400px;
     display: flex;
@@ -18,11 +18,12 @@
       color: white;
     }
   }
+
   .order_box {
     position: fixed;
-    right: 50px;
+    right: 30px;
     top: 150px;
-    z-index: -10;
+
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -63,10 +64,7 @@
       color: white;
       background-color: black;
       padding: 10px 55px;
+      margin-bottom: 30px;
     }
-  }
-  .clear_basket {
-    position: absolute;
-    margin-top: 700px;
   }
 }
