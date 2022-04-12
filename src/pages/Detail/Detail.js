@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 import Modal from './Modal.js';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
+import RecommendItemCard from './RecommendItemCard';
 
 function Detail() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isLike, setIsLike] = useState(false);
   const [rugList, setRugList] = useState({
     rugImage: [
       {
@@ -26,8 +29,6 @@ function Detail() {
         setRugList(data);
       });
   }, []);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [isLike, setIsLike] = useState(false);
 
   const params = useParams();
   const urlId = params.id;
@@ -46,6 +47,7 @@ function Detail() {
     productDescription = rugList.rugImage[urlId - 1].description;
     productSize = rugList.rugImage[urlId - 1].size;
   }
+
   // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
@@ -71,19 +73,6 @@ function Detail() {
   };
 
   // [추천상품로직 구현 필요-백엔드] RecommendItemCard 컴포넌트
-  function RecommendItemCard() {
-    return (
-      <div className="recommend-body">
-        <div className="image-box">
-          <img alt="추천상품" src={productImg} />
-        </div>
-        <div className="description-box">
-          <span>{productName}</span>
-          <span>{productPrice}</span>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div>
@@ -152,7 +141,11 @@ function Detail() {
                     </div>
                   </div>
                   <div className="recommend-card-box">
-                    <RecommendItemCard />
+                    <RecommendItemCard
+                      image={productImg}
+                      name={productName}
+                      price={productPrice}
+                    />
                     <RecommendItemCard />
                     <RecommendItemCard />
                   </div>
