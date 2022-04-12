@@ -8,7 +8,6 @@ import CategoryList from './pages/CategoryList/CategoryList';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import List from './pages/List/List';
-import Loading from './pages/Loading/Loading';
 
 function Router() {
   return (
@@ -20,7 +19,6 @@ function Router() {
         <Route path="/categories/:category" element={<List />} />
         <Route path="/categories/:category/:id" element={<Detail />} />
         <Route path="/shop-cart" element={<ShopCart />} />
-        <Route path="/loading" element={<Loading />} />
       </Routes>
       <Footer />
     </BrowserRouter>
