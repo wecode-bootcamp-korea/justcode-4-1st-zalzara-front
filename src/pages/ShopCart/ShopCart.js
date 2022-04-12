@@ -11,7 +11,7 @@ export default function ShopCart() {
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await fetch('http://localhost:8800/shop-cart', {
+    const response = await fetch('http://localhost:8000/shop-cart', {
       method: 'GET',
     });
     const getData = await response.json();
