@@ -48,6 +48,8 @@ function Detail() {
     productSize = rugList.rugImage[urlId - 1].size;
   }
 
+  console.log(productImg);
+
   // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
@@ -71,8 +73,6 @@ function Detail() {
   const LikeHandler = () => {
     isLike === false ? setIsLike(true) : setIsLike(false);
   };
-
-  // [추천상품로직 구현 필요-백엔드] RecommendItemCard 컴포넌트
 
   return (
     <div>
@@ -122,12 +122,8 @@ function Detail() {
                   </div>
                 </div>
 
-                {/* 마우스 오버시 색상 변경 */}
-                <div
-                  className="add-cart"
-                  //장바구니 버튼 클릭시 카트에 id 보내기
-                  onClick={addCart}
-                >
+                {/* 장바구니 버튼 */}
+                <div className="add-cart" onClick={addCart}>
                   <span className="add-cart-text">
                     장바구니 담기 ({productPrice})
                   </span>
@@ -141,13 +137,13 @@ function Detail() {
                     </div>
                   </div>
                   <div className="recommend-card-box">
-                    <RecommendItemCard
-                      image={productImg}
-                      name={productName}
-                      price={productPrice}
-                    />
-                    <RecommendItemCard />
-                    <RecommendItemCard />
+                    {rugList.rugImage.map(rug => (
+                      <RecommendItemCard
+                        image={productImg}
+                        name={productName}
+                        price={productPrice}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
