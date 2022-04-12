@@ -3,10 +3,11 @@ import CategoryCard from './CategoryCard';
 import './CategoryList.scss';
 
 export default function CategoryList() {
-  const [categories, setCategories] = useState({});
+  // const [categories, setCategories] = useState({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+
+useEffect(() => {
     fetch('http://localhost:8000/categories', {
       method: 'GET',
       headers: {
@@ -20,16 +21,23 @@ export default function CategoryList() {
       });
   }, []);
 
+  const categories = [
+    {
+      id: 1,
+      name: '러그',
+    },
+    {
+      id: 2,
+      name: '가구',
+    },
+  ];
+
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <div className="CategoryList">
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        categories.map(category => (
-          <CategoryCard key={category.id} name={category.name} />
-        ))
-      )}
+      {categories.map(category => (
+        <CategoryCard key={category.id} name={category.name} />
+      ))}
     </div>
   );
 }

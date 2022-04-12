@@ -30,6 +30,27 @@ function Header() {
           <div className="logo" onClick={() => navigate('/')}>
             <img src="/images/logo.png" alt="logo" />
           </div>
+          <div className="nav">
+            <ul>
+              <li>신상품</li>
+              <li className="special-price">SPECIAL PRICE</li>
+              <li>침실</li>
+              <li>의류 & 슈즈</li>
+              <li onClick={() => navigate('/main')}>거실</li>
+              <li>주방</li>
+              <li>다이닝</li>
+              <li>욕실</li>
+              <li>디퓨저 & 캔들</li>
+              <li>키즈</li>
+              <li>드레스룸</li>
+              <li>가드닝 신상</li>
+              <li>DAILY LIVING</li>
+              <li>린넨 컬렉션 신상</li>
+              <li>펫 컬렉션</li>
+              <li>STORIES</li>
+              <li>레시피</li>
+            </ul>
+          </div>
         </div>
         <div className="search-login-box">
           <button className="search-box">검색____________________</button>

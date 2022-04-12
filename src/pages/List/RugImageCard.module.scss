@@ -1,4 +1,5 @@
 .RugImageCard {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
   width: 47%; //이미지는 두개로 묶고 양쪽 사이 갭주기
   .rug__list {
     //네스팅
@@ -40,6 +41,7 @@
   bottom: 0;
   width: 100%;
   padding: 12px 0;
+  transition: 0.3s;
   &:hover {
     background-color: black;
     cursor: pointer;
@@ -49,16 +51,9 @@
 }
 
 .get__in__cart {
-  font-size: 12.5px;
+  font-size: 0.7rem;
   text-align: center;
 }
-
-// .pop__cart:hover {
-//   background-color: black;
-//   cursor: pointer;
-//   color: white;
-//   display: block;
-// }
 
 .rug__name {
   padding-top: 10px;
@@ -70,7 +65,7 @@
 
 .rug__info {
   margin-top: 1%;
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 
 .rug__name:hover {

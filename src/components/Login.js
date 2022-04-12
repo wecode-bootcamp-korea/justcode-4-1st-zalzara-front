@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import './Login.scss';
 import Signup from './Signup';
@@ -8,6 +9,34 @@ function Login({
   openLoginModal,
   closeModal,
 }) {
+  // id, pw 를 받아 state 로 사용
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+
+  const handleLogin = () => {
+    fetch('http://localhost:8000/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: id,
+        password: pw,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => console.log(result));
+  };
+
+  // id, pw input 값을 받아 state 로 받는 함수
+  const handleIdInput = e => {
+    setId(e.target.value);
+  };
+
+  const handlePwInput = e => {
+    setPw(e.target.value);
+  };
+
   if (showLoginModal === 'login') {
     return (
       <div>
@@ -31,14 +60,28 @@ function Login({
                 </div>
               </div>
               <div className="login-form">
-                <input className="id" type="text" placeholder="이메일*" />
-                <input className="pw" type="password" placeholder="비밀번호*" />
+                <input
+                  className="id"
+                  type="text"
+                  placeholder="이메일*"
+                  // 입력할 때마다 state 를 변경
+                  onChange={handleIdInput}
+                />
+                <input
+                  className="pw"
+                  type="password"
+                  placeholder="비밀번호*"
+                  // 입력할 때마다 state 를 변경
+                  onChange={handlePwInput}
+                />
                 <p className="forgot-pw">
                   <span className="forgot-pw-content">
                     비밀번호를 잊으셨습니까?
                   </span>
                 </p>
-                <button className="login-button">로그인</button>
+                <button className="login-button" onClick={handleLogin}>
+                  로그인
+                </button>
                 <div className="social-login-wrapper">
                   <h4 className="or-line">
                     <span className="or-block">또는</span>
