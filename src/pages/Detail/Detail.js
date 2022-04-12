@@ -18,8 +18,7 @@ function Detail() {
       },
     ],
   });
-  // const [blockColor, setBlockColor] = useState('white');
-  // const [fontColor, setFontColor] = useState('black');
+
   useEffect(() => {
     fetch('/data/rugList.json')
       .then(res => res.json())
@@ -29,13 +28,10 @@ function Detail() {
   }, []);
   const [modalOpen, setModalOpen] = useState(false);
   const [isLike, setIsLike] = useState(false);
-  const [likedProduct, setLikedProduct] = useState(0);
 
   const params = useParams();
   const urlId = params.id;
-  console.log('a', urlId);
 
-  console.log('images: ', rugList.rugImage);
   let productName;
   let productImg;
   let productPrice;
@@ -50,15 +46,6 @@ function Detail() {
     productDescription = rugList.rugImage[urlId - 1].description;
     productSize = rugList.rugImage[urlId - 1].size;
   }
-
-  // 블럭 색상 변경 & 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
-  // const handleBlockColor = e => {
-  //   blockColor === 'white' ? setBlockColor('black') : setBlockColor('white');
-  // };
-  // const handleFontColor = e => {
-  //   fontColor === 'black' ? setFontColor('white') : setFontColor('black');
-  // };
-
   // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
@@ -88,11 +75,11 @@ function Detail() {
     return (
       <div className="recommend-body">
         <div className="image-box">
-          {/* <img alt="추천상품" src={productImg} /> */}
+          <img alt="추천상품" src={productImg} />
         </div>
         <div className="description-box">
-          {/* <span>{productName}</span> */}
-          {/* <span>{productPrice}</span> */}
+          <span>{productName}</span>
+          <span>{productPrice}</span>
         </div>
       </div>
     );
