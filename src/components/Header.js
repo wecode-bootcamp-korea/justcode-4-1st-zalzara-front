@@ -33,10 +33,10 @@ function Header() {
           <div className="nav">
             <ul>
               <li>신상품</li>
-              <li className="special-price">SPECIAL PRICE</li>
+              <li>SPECIAL PRICE</li>
               <li>침실</li>
               <li>의류 & 슈즈</li>
-              <li onClick={() => navigate('/main')}>거실</li>
+              <li onClick={() => navigate('/categories')}>거실</li>
               <li>주방</li>
               <li>다이닝</li>
               <li>욕실</li>

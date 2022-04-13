@@ -32,7 +32,7 @@ function RugImageCard({ rug }) {
               alt="rug"
               className={style.rug__img}
               src={rug.imageUrl}
-              onClick={() => navigate(`./${rug.name}`)}
+              onClick={() => navigate(`./${rug.id}`)}
             />
             <div
               className={style.pop__cart}
@@ -46,7 +46,7 @@ function RugImageCard({ rug }) {
           <div className={style.rug__info}>
             <h2
               className={style.rug__name}
-              onClick={() => navigate(`./${rug.name}`)}
+              onClick={() => navigate(`./${rug.id}`)}
             >
               {rug.name}
             </h2>

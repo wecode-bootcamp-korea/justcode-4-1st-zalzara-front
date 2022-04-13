@@ -48,9 +48,6 @@
     li:hover {
       color: #a7a7a7;
     }
-    .special-price {
-      color: rgb(179, 0, 0);
-    }
   }
   .search-login-box {
     display: flex;
@@ -64,6 +61,7 @@
       cursor: pointer;
     }
   }
+
   //로고 마우스 오버 애니메이션
   .menu-logo-box:hover {
     .logo {

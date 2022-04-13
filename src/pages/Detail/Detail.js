@@ -4,8 +4,12 @@ import { useEffect, useState } from 'react';
 import Modal from './Modal.js';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
+import RecommendItemCard from './RecommendItemCard';
 
 function Detail() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isLike, setIsLike] = useState(false);
+  const [carousel, setCarousel] = useState(0);
   const [rugList, setRugList] = useState({
     rugImage: [
       {
@@ -18,8 +22,7 @@ function Detail() {
       },
     ],
   });
-  // const [blockColor, setBlockColor] = useState('white');
-  // const [fontColor, setFontColor] = useState('black');
+
   useEffect(() => {
     fetch('/data/rugList.json')
       .then(res => res.json())
@@ -27,15 +30,10 @@ function Detail() {
         setRugList(data);
       });
   }, []);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [isLike, setIsLike] = useState(false);
-  const [likedProduct, setLikedProduct] = useState(0);
 
   const params = useParams();
   const urlId = params.id;
-  console.log('a', urlId);
 
-  console.log('images: ', rugList.rugImage);
   let productName;
   let productImg;
   let productPrice;
@@ -51,13 +49,7 @@ function Detail() {
     productSize = rugList.rugImage[urlId - 1].size;
   }
 
-  // 블럭 색상 변경 & 폰트 색상 변경 -- 장바구니 담기 마우스 오버/아웃
-  // const handleBlockColor = e => {
-  //   blockColor === 'white' ? setBlockColor('black') : setBlockColor('white');
-  // };
-  // const handleFontColor = e => {
-  //   fontColor === 'black' ? setFontColor('white') : setFontColor('black');
-  // };
+  console.log(productImg);
 
   // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
@@ -83,21 +75,7 @@ function Detail() {
     isLike === false ? setIsLike(true) : setIsLike(false);
   };
 
-  // [추천상품로직 구현 필요-백엔드] RecommendItemCard 컴포넌트
-  function RecommendItemCard() {
-    return (
-      <div className="recommend-body">
-        <div className="image-box">
-          {/* <img alt="추천상품" src={productImg} /> */}
-        </div>
-        <div className="description-box">
-          {/* <span>{productName}</span> */}
-          {/* <span>{productPrice}</span> */}
-        </div>
-      </div>
-    );
-  }
-
+  console.log('carousel: ' + carousel);
   return (
     <div>
       <section className="main">
@@ -108,11 +86,7 @@ function Detail() {
             onClick={() => setModalOpen(true)}
             id="img"
           >
-            <img
-              alt="이미지 섹션"
-              src={productImg}
-              // onClick={openModal}
-            />
+            <img alt="이미지 섹션" src={productImg} />
           </div>
 
           {/* 컨텐츠 섹션 */}
@@ -146,12 +120,8 @@ function Detail() {
                   </div>
                 </div>
 
-                {/* 마우스 오버시 색상 변경 */}
-                <div
-                  className="add-cart"
-                  //장바구니 버튼 클릭시 카트에 id 보내기
-                  onClick={addCart}
-                >
+                {/* 장바구니 버튼 */}
+                <div className="add-cart" onClick={addCart}>
                   <span className="add-cart-text">
                     장바구니 담기 ({productPrice})
                   </span>
@@ -160,14 +130,28 @@ function Detail() {
                   <div className="recommend-header">
                     <span>추천 상품</span>
                     <div className="button-box">
-                      <button className="button-left">&#60;</button>
-                      <button className="button-right">&#62;</button>
+                      <button
+                        className="button-left"
+                        onClick={() => setCarousel(1)}
+                      >
+                        &#60;
+                      </button>
+                      <button
+                        className="button-right"
+                        onClick={() => (setCarousel += 1)}
+                      >
+                        &#62;
+                      </button>
                     </div>
                   </div>
                   <div className="recommend-card-box">
-                    <RecommendItemCard />
-                    <RecommendItemCard />
-                    <RecommendItemCard />
+                    {rugList.rugImage.map(rug => (
+                      <RecommendItemCard
+                        image={productImg}
+                        name={productName}
+                        price={productPrice}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -176,6 +160,7 @@ function Detail() {
         </div>
       </section>
 
+      {/* 모달 */}
       <div>
         <Modal
           open={modalOpen}
@@ -186,6 +171,7 @@ function Detail() {
         </Modal>
       </div>
 
+      {/* footer */}
       <section className="detail-footer">
         <span>
           <b className="bold">제조업체: </b>
