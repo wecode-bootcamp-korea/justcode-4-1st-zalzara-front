@@ -9,6 +9,7 @@ import RecommendItemCard from './RecommendItemCard';
 function Detail() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isLike, setIsLike] = useState(false);
+  const [carousel, setCarousel] = useState(0);
   const [rugList, setRugList] = useState({
     rugImage: [
       {
@@ -74,6 +75,7 @@ function Detail() {
     isLike === false ? setIsLike(true) : setIsLike(false);
   };
 
+  console.log('carousel: ' + carousel);
   return (
     <div>
       <section className="main">
@@ -84,11 +86,7 @@ function Detail() {
             onClick={() => setModalOpen(true)}
             id="img"
           >
-            <img
-              alt="이미지 섹션"
-              src={productImg}
-              // onClick={openModal}
-            />
+            <img alt="이미지 섹션" src={productImg} />
           </div>
 
           {/* 컨텐츠 섹션 */}
@@ -132,8 +130,18 @@ function Detail() {
                   <div className="recommend-header">
                     <span>추천 상품</span>
                     <div className="button-box">
-                      <button className="button-left">&#60;</button>
-                      <button className="button-right">&#62;</button>
+                      <button
+                        className="button-left"
+                        onClick={() => setCarousel(1)}
+                      >
+                        &#60;
+                      </button>
+                      <button
+                        className="button-right"
+                        onClick={() => (setCarousel += 1)}
+                      >
+                        &#62;
+                      </button>
                     </div>
                   </div>
                   <div className="recommend-card-box">
@@ -152,6 +160,7 @@ function Detail() {
         </div>
       </section>
 
+      {/* 모달 */}
       <div>
         <Modal
           open={modalOpen}
@@ -162,6 +171,7 @@ function Detail() {
         </Modal>
       </div>
 
+      {/* footer */}
       <section className="detail-footer">
         <span>
           <b className="bold">제조업체: </b>

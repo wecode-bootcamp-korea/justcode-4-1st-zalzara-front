@@ -1,20 +1,23 @@
 .main {
   font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+
   .content-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 
     .image-section {
+      width: 60%;
+      min-width: 40rem;
       img {
-        min-width: 700px;
         cursor: zoom-in;
       }
+      background-color: yellow;
     }
 
     .content-section {
       display: inline-block;
-      padding: 4rem;
-
+      margin-left: 4rem;
+      padding-top: 4rem;
       .sticky {
         position: sticky;
         top: -3rem;
@@ -42,6 +45,8 @@
       .action-block {
         top: 0;
         overflow: hidden;
+        min-width: 30rem;
+        width: 30rem;
         .size-header {
           display: block;
           margin-top: 1rem;
@@ -154,7 +159,6 @@
             justify-content: flex-start;
             box-sizing: border-box;
             overflow: hidden;
-            // background-color: yellow;
           }
           .recommend-body {
             margin-right: 0.6rem;
