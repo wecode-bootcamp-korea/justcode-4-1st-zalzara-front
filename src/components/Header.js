@@ -33,7 +33,8 @@ function Header() {
           <div className="nav">
             <ul>
               <li>신상품</li>
-              <li>SPECIAL PRICE</li>
+              <li className="special-price">SPECIAL PRICE</li>
+              <br />
               <li>침실</li>
               <li>의류 & 슈즈</li>
               <li onClick={() => navigate('/categories')}>거실</li>
@@ -43,12 +44,21 @@ function Header() {
               <li>디퓨저 & 캔들</li>
               <li>키즈</li>
               <li>드레스룸</li>
-              <li>가드닝 신상</li>
+              <li>
+                가드닝 <span className="new">신상</span>
+              </li>
               <li>DAILY LIVING</li>
-              <li>린넨 컬렉션 신상</li>
+              <li>
+                린넨 컬렉션 <span className="new">신상</span>
+              </li>
               <li>펫 컬렉션</li>
-              <li>STORIES</li>
+              <br />
+              <li>
+                STORIES <span className="new">신상</span>
+              </li>
               <li>레시피</li>
+              <br />
+              <li className="info">+ INFO</li>
             </ul>
           </div>
         </div>
