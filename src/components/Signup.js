@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import styles from './Signup.module.scss';
 import './Signup.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { HiChevronLeft } from 'react-icons/hi';
 
 function Signup({ openLoginModal, closeModal }) {
+  // id, pw, ... 를 받아 state 로 사용
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const [username, setUsername] = useState('');
+  // const [policyAgreed, setpolicyAgreed] = useState('');
+  // const [overseasPrivacy, setoverseasPrivacy] = useState('');
+
+  const handleSignup = () => {
+    fetch('http://localhost:8000/user/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: id,
+        password: pw,
+        username: username,
+        // policyAgreed: policyAgreed,
+        // overseasPrivacy: overseasPrivacy,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => console.log(result));
+  };
+
+  const handleIdInput = e => {
+    setId(e.target.value);
+  };
+
+  const handlePwInput = e => {
+    setPw(e.target.value);
+  };
+
+  const handleUsernameInput = e => {
+    setUsername(e.target.value);
+  };
+
+  // const handlePolicyAgreedInput = e => {
+  //   setpolicyAgreed(e.target.value);
+  // };
+
+  // const handleOverseasPrivacyInput = e => {
+  //   setoverseasPrivacy(e.target.value);
+  // };
+
   return (
     <div>
       <div className="signup-background" onClick={closeModal}>
@@ -32,24 +77,27 @@ function Signup({ openLoginModal, closeModal }) {
                 <span>회사</span>
               </div>
             </div>
-            <form className="signup-form" action="./user/signup" method="POST">
+            <div className="signup-form">
               <input
                 className="name"
                 type="text"
-                name="username"
                 placeholder="이름*"
+                // 입력할 때마다 state 를 변경
+                onChange={handleUsernameInput}
               />
               <input
                 className="id"
                 type="text"
-                name="email"
                 placeholder="이메일*"
+                // 입력할 때마다 state 를 변경
+                onChange={handleIdInput}
               />
               <input
                 className="pw"
                 type="password"
-                name="password"
                 placeholder="비밀번호*"
+                // 입력할 때마다 state 를 변경
+                onChange={handlePwInput}
               />
               <div className="consents">
                 <div className="consents-checkbox">
@@ -57,13 +105,23 @@ function Signup({ openLoginModal, closeModal }) {
                   <span>모두동의</span>
                 </div>
                 <div className="consents-checkbox">
-                  <input type="checkbox" name="policyAgreed" required />
+                  <input
+                    type="checkbox"
+                    required
+                    // 입력할 때마다 state 를 변경
+                    // onChange={handlePolicyAgreedInput}
+                  />
                   <span>
                     * 개인정보의 수집 및 이용에 대한 동의. 자세히 보기.
                   </span>
                 </div>
                 <div className="consents-checkbox">
-                  <input type="checkbox" name="overseasPrivacy" required />
+                  <input
+                    type="checkbox"
+                    required
+                    // 입력할 때마다 state 를 변경
+                    // onChange={handleOverseasPrivacyInput}
+                  />
                   <span>* 개인정보의 국외 이전에 대한 동의. 자세히 보기.</span>
                 </div>
                 <div className="consents-checkbox">
@@ -74,8 +132,10 @@ function Signup({ openLoginModal, closeModal }) {
                   </span>
                 </div>
               </div>
-              <button className="make-account">계정 만들기</button>
-            </form>
+              <button className="make-account" onClick={handleSignup}>
+                계정 만들기
+              </button>
+            </div>
           </div>
         </section>
       </div>
