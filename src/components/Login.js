@@ -37,6 +37,16 @@ function Login({
     setPw(e.target.value);
   };
 
+  // 로그인 버튼 활성화 여부
+  const isValidButton = isValidEmail(id) && pw.length !== 0;
+
+  // email 형식 가능 여부
+  function isValidEmail(str) {
+    const regEmail =
+      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    return regEmail.test(str);
+  }
+
   if (showLoginModal === 'login') {
     return (
       <div>
@@ -61,12 +71,17 @@ function Login({
               </div>
               <div className="login-form">
                 <input
-                  className="id"
+                  className={`id ${
+                    isValidEmail(id) || id.length === 0 ? '' : 'disabled'
+                  }`}
                   type="text"
                   placeholder="이메일*"
                   // 입력할 때마다 state 를 변경
                   onChange={handleIdInput}
                 />
+                {!isValidEmail(id) && id.length !== 0 ? (
+                  <p className="invalid-message">이메일 주소를 입력하세요.</p>
+                ) : null}
                 <input
                   className="pw"
                   type="password"
@@ -79,7 +94,11 @@ function Login({
                     비밀번호를 잊으셨습니까?
                   </span>
                 </p>
-                <button className="login-button" onClick={handleLogin}>
+                <button
+                  className="login-button"
+                  disabled={!isValidButton}
+                  onClick={handleLogin}
+                >
                   로그인
                 </button>
                 <div className="social-login-wrapper">
