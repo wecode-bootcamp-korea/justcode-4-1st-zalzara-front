@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
 import style from './RugImageCard.module.scss';
-// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function RugImageCard({ rug }) {
   const [isHovering, setIsHovering] = useState(false);
-  // const [isColoring, setIsColoring] = useState({
-  //   background: 'rgba(255, 255, 255, 0.781)',
-  //   fontColor: 'black',
-  // });
 
   const navigate = useNavigate();
-  // function handleClick() {
-  //   navigate('./detail');}
-  // 클릭하면 detail페이지로 이동하기
 
-  // const [fontColor, setFontColor] = useState('white');
-  // 호버 했을 때 isHovering이 true가 되는 함수
-  // const mouseOnCart = () => {
-  //   setIsColoring({ background: 'black', fontColor: 'white' });
-  // };
-  // const mouseOutCart = () => {
-  //   setIsColoring({ background: 'grey', fontColor: 'black' });
-  // };
-  // // 마우스를 뗐을 때 isHovering이 false가 되는 함수
+  const postProduct = rugId => {
+    fetch('http://localhost:8800/categories/:category', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: rugId,
+      }),
+    });
+  };
 
   return (
     <div
@@ -38,27 +32,21 @@ function RugImageCard({ rug }) {
               alt="rug"
               className={style.rug__img}
               src={rug.imageUrl}
-              onClick={() => navigate('./detail')}
+              onClick={() => navigate(`./${rug.id}`)}
             />
             <div
               className={style.pop__cart}
               style={{ opacity: isHovering ? 1 : 0 }}
-              // style={{
-              //   backgroundColor: isColoring.background,
-              //   color: isColoring.fontColor,
-              // }}
-              // onMouseOver={mouseOnCart}
-              // onMouseOut={mouseOutCart}
+              onClick={() => postProduct(rug.id)}
             >
               <span className={style.get__in__cart}>장바구니에 담기</span>
             </div>
           </div>
-          {/* {isHovering ? ( */}
-          {/* ) : null} */}
+
           <div className={style.rug__info}>
             <h2
               className={style.rug__name}
-              onClick={() => navigate('./detail')}
+              onClick={() => navigate(`./${rug.id}`)}
             >
               {rug.name}
             </h2>
