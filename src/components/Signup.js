@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-// import styles from './Signup.module.scss';
 import './Signup.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { HiChevronLeft } from 'react-icons/hi';
@@ -9,8 +8,6 @@ function Signup({ openLoginModal, closeModal }) {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [username, setUsername] = useState('');
-  // const [policyAgreed, setpolicyAgreed] = useState('');
-  // const [overseasPrivacy, setoverseasPrivacy] = useState('');
 
   const handleSignup = () => {
     fetch('http://localhost:8000/user/signup', {
@@ -42,31 +39,38 @@ function Signup({ openLoginModal, closeModal }) {
     setUsername(e.target.value);
   };
 
-  // const handlePolicyAgreedInput = e => {
-  //   setpolicyAgreed(e.target.value);
-  // };
+  // 로그인 버튼 활성화 여부
+  const isValidButton =
+    username.length !== 0 && isValidEmail(id) && isValidPw(pw);
 
-  // const handleOverseasPrivacyInput = e => {
-  //   setoverseasPrivacy(e.target.value);
-  // };
+  // email 형식 가능 여부
+  function isValidEmail(str) {
+    const regEmail =
+      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    return regEmail.test(str);
+  }
+
+  // pw 형식 가능 여부
+  function isValidPw(str) {
+    const regPw =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    return regPw.test(str);
+  }
 
   // 체크 박스
   const [checkedList, setCheckedLists] = useState([]);
   // 전체 체크 클릭 시 발생하는 함수
-  const onCheckedAll = useCallback(
-    checked => {
-      if (checked) {
-        const checkedListArray = [];
+  const onCheckedAll = useCallback(checked => {
+    if (checked) {
+      const checkedListArray = [];
 
-        dataLists.forEach(list => checkedListArray.push(list));
+      dataLists.forEach(list => checkedListArray.push(list));
 
-        setCheckedLists(checkedListArray);
-      } else {
-        setCheckedLists([]);
-      }
-    },
-    [dataLists]
-  );
+      setCheckedLists(checkedListArray);
+    } else {
+      setCheckedLists([]);
+    }
+  }, []);
 
   const onCheckedElement = useCallback(
     (checked, list) => {
@@ -115,14 +119,18 @@ function Signup({ openLoginModal, closeModal }) {
                 onChange={handleUsernameInput}
               />
               <input
-                className="id"
+                className={`id ${
+                  isValidEmail(id) || id.length === 0 ? '' : 'disabled'
+                }`}
                 type="text"
                 placeholder="이메일*"
                 // 입력할 때마다 state 를 변경
                 onChange={handleIdInput}
               />
               <input
-                className="pw"
+                className={`pw ${
+                  isValidPw(pw) || pw.length === 0 ? '' : 'disabled'
+                }`}
                 type="password"
                 placeholder="비밀번호*"
                 // 입력할 때마다 state 를 변경
@@ -158,7 +166,11 @@ function Signup({ openLoginModal, closeModal }) {
                   </div>
                 ))}
               </div>
-              <button className="make-account" onClick={handleSignup}>
+              <button
+                className="make-account"
+                disabled={!isValidButton}
+                onClick={handleSignup}
+              >
                 계정 만들기
               </button>
             </div>

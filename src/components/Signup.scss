@@ -63,11 +63,15 @@
     border: none;
     border-bottom: 1px solid black;
   }
+  .disabled {
+    border-bottom: 1px solid red;
+  }
   .make-account {
     margin: 20px 0;
     padding: 10px 0;
     background-color: white;
     border: 1px solid black;
+    color: black;
     cursor: pointer;
     transition: 0.3s;
     &:hover {
