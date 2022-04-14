@@ -24,6 +24,10 @@ export default function BasketCard() {
     setItems([...items.filter(i => i.later !== false)]);
   };
 
+  const slicePrice = p => {
+    return String(p).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     items.filter(i => i.later === false).length > 0
@@ -54,10 +58,10 @@ export default function BasketCard() {
             <div className="order_box">
               <div className="total_items">{totalCounts()} 제품</div>
               <div className="total_price_with_tax">
-                총 제품: 세금 포함 <span>{totalPrice()}원</span>
+                총 제품: 세금 포함 <span>{slicePrice(totalPrice())}원</span>
               </div>
               <div className="total_price">
-                합계: <span>{totalPrice()}원*</span>
+                합계: <span>{slicePrice(totalPrice())}원*</span>
               </div>
               <span className="promotion_alert">
                 프로모션 코드가 있으신가요? 나중에 결제 페이지에서 입력하십시오.

@@ -10,6 +10,7 @@ export default function ShopCart() {
   const [line, setLine] = useState('basket');
   const [loading, setLoading] = useState(true);
 
+  /*
   const fetchData = async () => {
     const response = await fetch('http://localhost:8000/shop-cart', {
       method: 'GET',
@@ -17,13 +18,37 @@ export default function ShopCart() {
     const getData = await response.json();
 
     if (getData) {
-      setLoading(false);
       setItems(getData);
+      setLoading(false);
     }
   };
-
+*/
   useEffect(() => {
-    fetchData();
+    // fetchData();
+    let data = [
+      {
+        id: 1,
+        url: 'https://image.shutterstock.com/z/stock-photo-carpet-bathmat-and-rug-boho-style-ethnic-design-pattern-with-distressed-woven-texture-and-effect-1970556758.jpg',
+        price: 319000,
+        name: '빈티지 러그',
+        pid: `3132/133/123/45`,
+        size: '200 x 300',
+        count: 1,
+        later: false,
+      },
+      {
+        id: 2,
+        url: 'https://image.shutterstock.com/z/stock-photo-vintage-rug-carpet-design-grunge-background-frame-carpet-colorful-geometry-knitwear-rug-textile-2023200983.jpg',
+        price: 899000,
+        name: '플렉트 러그',
+        pid: `2132/123/123/12`,
+        size: '230 x 250',
+        count: 1,
+        later: false,
+      },
+    ];
+
+    setItems(data);
   }, []);
   const basketCount = later => {
     let count = 0;
@@ -56,7 +81,7 @@ export default function ShopCart() {
             onClick={changeBasket}
           >
             장바구니 <span>({basketCount(false)})</span>
-          </div>{' '}
+          </div>
           <div
             className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
             onClick={changeBasket}

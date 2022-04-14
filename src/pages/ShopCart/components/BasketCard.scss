@@ -8,26 +8,28 @@
     height: 400px;
     display: flex;
     justify-content: center;
-  }
-  .clear_basket {
-    border: 1px solid black;
-    background-color: inherit;
-    padding: 10px 55px;
-    &:hover {
-      background-color: black;
-      color: white;
-    }
+    align-items: center;
+    padding-left: 550px;
   }
 
   .order_box {
     position: fixed;
-    right: 30px;
+    right: 50px;
     top: 150px;
-
     display: flex;
     flex-direction: column;
     width: 300px;
     padding-top: 80px;
+
+    .clear_basket {
+      border: 1px solid black;
+      background-color: white;
+      padding: 10px 55px;
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    }
     .total_items {
       border-bottom: 1px solid silver;
       padding-bottom: 10px;
@@ -65,6 +67,9 @@
       background-color: black;
       padding: 10px 55px;
       margin-bottom: 30px;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }
