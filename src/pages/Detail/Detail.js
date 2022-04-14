@@ -48,9 +48,8 @@ function Detail() {
         setProductDetail(res.productDetail[0]);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
-  console.log(productDetail);
 
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
@@ -76,19 +75,18 @@ function Detail() {
   };
 
   //prev, next 버튼 클릭시 캐로셀 동작
-  let carouselStyle = { margin: '0 0 0 ' + `${-218 * carouselCount}px` };
+  let carouselStyle = { marginLeft: `${-218 * carouselCount}px` };
 
   const CarouselHandler = i => {
     setCarouselCount(prev => prev + i);
   };
-  console.log(productDetail.price);
 
   //가격 정규표현식
   const slicePrice = p => {
     return p.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
   };
   return (
-    <>
+    <div>
       {loading ? (
         <Loading />
       ) : (
@@ -169,10 +167,6 @@ function Detail() {
                             }
                             onClick={() => CarouselHandler(1)}
                             disabled={carouselCount === 4 ? true : false}
-                            // style={{
-                            //   backgroundColor: 'white',
-                            //   boxShadow: '0px 3px 3px rgb(189, 189, 189)',
-                            // }}
                           >
                             &#62;
                           </button>
@@ -212,7 +206,7 @@ function Detail() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

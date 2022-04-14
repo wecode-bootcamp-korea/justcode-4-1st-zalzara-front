@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Slider.css';
+import './Slider.scss';
 import BtnSlider from './btnSlider';
 import dataSlider from './dataSlide';
 
@@ -30,7 +30,7 @@ export default function Slider() {
     <div className="container-slider">
       {dataSlider.map((obj, index) => {
         return (
-          <>
+          <div>
             <div
               key={obj.id}
               className={
@@ -43,7 +43,7 @@ export default function Slider() {
                 }
               />
             </div>
-          </>
+          </div>
         );
       })}
       <BtnSlider moveSlide={nextSlide} direction={'next'} />
