@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import './Slider.css';
 import BtnSlider from './btnSlider';
-// import dataSlider from './dataSlider';
-import img1 from '../Slide/Images/mainImg1.jpg';
-import img2 from '../Slide/Images/mainImg2.jpg';
-import img3 from '../Slide/Images/mainImg3.jpg';
-import img4 from '../Slide/Images/mainImg4.jpg';
+import dataSlider from './dataSlide';
+// import img1 from '../Slide/Images/mainImg1.jpg';
+// import img2 from '../Slide/Images/mainImg2.jpg';
+// import img3 from '../Slide/Images/mainImg3.jpg';
+// import img4 from '../Slide/Images/mainImg4.jpg';
 
 export default function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
-  const imgSlide = [img1, img2, img3, img4];
-
+  //   const imgSlide = [img1, img2, img3, img4];
   const nextSlide = () => {
-    if (slideIndex !== imgSlide.length) {
+    if (slideIndex !== dataSlider.length) {
       setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === imgSlide.length) {
+    } else if (slideIndex === dataSlider.length) {
       setSlideIndex(1);
     }
   };
@@ -23,7 +22,7 @@ export default function Slider() {
     if (slideIndex !== 1) {
       setSlideIndex(slideIndex - 1);
     } else if (slideIndex === 1) {
-      setSlideIndex(imgSlide.length);
+      setSlideIndex(dataSlider.length);
     }
   };
 
@@ -33,7 +32,7 @@ export default function Slider() {
 
   return (
     <div className="container-slider">
-      {imgSlide.map((obj, index) => {
+      {dataSlider.map((obj, index) => {
         return (
           <>
             <div
@@ -42,8 +41,12 @@ export default function Slider() {
                 slideIndex === index + 1 ? 'slide slide-active' : 'slide'
               }
             >
-              <img src={'http://localhost:3000' + img1} />
-              {/* <img src={'http://localhost:3000' + `/Images/mainImg${index + 1}.jpg`} /> */}
+              {/* <img src={'http://localhost:3000' + img1} /> */}
+              <img
+                src={
+                  'http://localhost:3000' + `/images/mainImg${index + 1}.jpg`
+                }
+              />
             </div>
           </>
         );
