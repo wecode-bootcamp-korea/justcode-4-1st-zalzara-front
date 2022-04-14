@@ -50,7 +50,6 @@ function Detail() {
       });
   }, [id]);
 
-
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
       method: 'POST',
