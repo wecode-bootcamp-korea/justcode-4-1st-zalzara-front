@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router-dom';
 function RugImageCard({ rug }) {
   const [isHovering, setIsHovering] = useState(false);
 
+  const slicePrice = p => {
+    return p.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   const navigate = useNavigate();
 
   const postProduct = rugId => {
-    fetch('http://localhost:8800/categories/:category', {
+    fetch('http://localhost:8000/categories/:category', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +54,7 @@ function RugImageCard({ rug }) {
             >
               {rug.name}
             </h2>
-            <p className={style.rug__price}>{rug.price}</p>
+            <p className={style.rug__price}>{slicePrice(rug.prices)} 원</p>
           </div>
         </div>
       </li>

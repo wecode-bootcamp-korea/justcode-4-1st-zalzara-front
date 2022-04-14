@@ -8,27 +8,41 @@ export default function ShopCart() {
   const [items, setItems] = useState([]);
   const [card, setCard] = useState(<BasketCard />);
   const [line, setLine] = useState('basket');
+  const [loading, setLoading] = useState(true);
 
+  /*
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:8000/shop-cart', {
+      method: 'GET',
+    });
+    const getData = await response.json();
+
+    if (getData) {
+      setItems(getData);
+      setLoading(false);
+    }
+  };
+*/
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // fetchData();
     let data = [
       {
         id: 1,
-        url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
-        price: 412414,
-        name: '스프라이트 머시기',
-        pid: `2132/1323/123`,
-        size: '더블/퀸 (230 x 250)',
+        url: 'https://image.shutterstock.com/z/stock-photo-carpet-bathmat-and-rug-boho-style-ethnic-design-pattern-with-distressed-woven-texture-and-effect-1970556758.jpg',
+        price: 319000,
+        name: '빈티지 러그',
+        pid: `3132/133/123/45`,
+        size: '200 x 300',
         count: 1,
         later: false,
       },
       {
         id: 2,
-        url: 'https://image.shutterstock.com/z/stock-photo-scandinavian-wool-dot-carpet-rug-with-cotton-base-and-wool-dots-on-white-background-geometric-1749541253.jpg',
-        price: 123231,
-        name: '콜라',
-        pid: `2132/1323/123`,
-        size: '더블/퀸 (230 x 250)',
+        url: 'https://image.shutterstock.com/z/stock-photo-vintage-rug-carpet-design-grunge-background-frame-carpet-colorful-geometry-knitwear-rug-textile-2023200983.jpg',
+        price: 899000,
+        name: '플렉트 러그',
+        pid: `2132/123/123/12`,
+        size: '230 x 250',
         count: 1,
         later: false,
       },
@@ -57,6 +71,7 @@ export default function ShopCart() {
       return setCard(<ShopLaterCard />);
     }
   };
+
   return (
     <CartContext.Provider value={{ items, setItems }}>
       <div className="ShopCart">
@@ -66,7 +81,7 @@ export default function ShopCart() {
             onClick={changeBasket}
           >
             장바구니 <span>({basketCount(false)})</span>
-          </div>{' '}
+          </div>
           <div
             className={line !== 'basket' ? 'shop_later' : 'shop_later_out'}
             onClick={changeBasket}

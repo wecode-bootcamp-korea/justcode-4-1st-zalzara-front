@@ -6,10 +6,16 @@ import { CartContext } from '../Contexts';
 export default function ProductCard({ product }) {
   const { items, setItems } = useContext(CartContext);
 
-  const [count, setCount] = useState(product.count);
+  let [count, setCount] = useState(product.count);
   product.count = count;
 
-  const [totalPrice, setTotalPrice] = useState(count * product.price);
+  const slicePrice = p => {
+    return String(p).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  const [totalPrice, setTotalPrice] = useState(
+    slicePrice(count * product.price)
+  );
 
   const [later, setLater] = useState(product.later);
   product.later = later;
@@ -17,20 +23,23 @@ export default function ProductCard({ product }) {
   const deleteCard = () => setCount(0);
 
   useEffect(() => {
-    setTotalPrice(count * product.price);
+    setTotalPrice(slicePrice(count * product.price));
     setItems([...items]);
   }, [count, later]);
 
   return count === 0 ? null : (
     <article className="ProductCard">
       <div className="img_box">
+        <div className="hidden_box">나중에 쇼핑하기</div>
+        <div className="button_box">
+          <button className="heart" onClick={() => setLater(prev => !prev)}>
+            <AiOutlineHeart />
+          </button>
+          <button className="delete" onClick={() => deleteCard()}>
+            <AiOutlineDelete />
+          </button>
+        </div>
         <img src={product.url} alt={product.name} />
-        <button className="heart" onClick={() => setLater(prev => !prev)}>
-          <AiOutlineHeart />
-        </button>
-        <button className="delete" onClick={() => deleteCard()}>
-          <AiOutlineDelete />
-        </button>
       </div>
       <div className="text_box">
         <div className="product_detail">
@@ -45,13 +54,14 @@ export default function ProductCard({ product }) {
         <div className="count_box">
           <button
             onClick={() => {
-              setCount(product.count--);
+              // eslint-disable-next-line no-const-assign
+              setCount(count--);
             }}
           >
             -
           </button>
-          <div className="count">{product.count}</div>
-          <button onClick={() => setCount(product.count + 1)}>+</button>
+          <div className="count">{count}</div>
+          <button onClick={() => setCount(count + 1)}>+</button>
         </div>
       </div>
     </article>
