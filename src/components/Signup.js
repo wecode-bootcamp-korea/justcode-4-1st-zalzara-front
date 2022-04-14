@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import styles from './Signup.module.scss';
+import React, { useCallback, useState } from 'react';
 import './Signup.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { HiChevronLeft } from 'react-icons/hi';
@@ -9,8 +8,6 @@ function Signup({ openLoginModal, closeModal }) {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [username, setUsername] = useState('');
-  // const [policyAgreed, setpolicyAgreed] = useState('');
-  // const [overseasPrivacy, setoverseasPrivacy] = useState('');
 
   const handleSignup = () => {
     fetch('http://localhost:8000/user/signup', {
@@ -42,13 +39,48 @@ function Signup({ openLoginModal, closeModal }) {
     setUsername(e.target.value);
   };
 
-  // const handlePolicyAgreedInput = e => {
-  //   setpolicyAgreed(e.target.value);
-  // };
+  // 로그인 버튼 활성화 여부
+  const isValidButton =
+    username.length !== 0 && isValidEmail(id) && isValidPw(pw);
 
-  // const handleOverseasPrivacyInput = e => {
-  //   setoverseasPrivacy(e.target.value);
-  // };
+  // email 형식 가능 여부
+  function isValidEmail(str) {
+    const regEmail =
+      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    return regEmail.test(str);
+  }
+
+  // pw 형식 가능 여부
+  function isValidPw(str) {
+    const regPw = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    return regPw.test(str);
+  }
+
+  // 체크 박스
+  const [checkedList, setCheckedLists] = useState([]);
+  // 전체 체크 클릭 시 발생하는 함수
+  const onCheckedAll = useCallback(checked => {
+    if (checked) {
+      const checkedListArray = [];
+
+      dataLists.forEach(list => checkedListArray.push(list));
+
+      setCheckedLists(checkedListArray);
+    } else {
+      setCheckedLists([]);
+    }
+  }, []);
+
+  const onCheckedElement = useCallback(
+    (checked, list) => {
+      if (checked) {
+        setCheckedLists([...checkedList, list]);
+      } else {
+        setCheckedLists(checkedList.filter(el => el !== list));
+      }
+    },
+    [checkedList]
+  );
 
   return (
     <div>
@@ -70,10 +102,10 @@ function Signup({ openLoginModal, closeModal }) {
                 <div>자라홈 계정 만들기</div>
               </div>
               <div>
-                <input type="checkbox" />
+                <input type="radio" checked />
                 <span>개인</span>
                 &nbsp;&nbsp;
-                <input type="checkbox" />
+                <input type="radio" />
                 <span>회사</span>
               </div>
             </div>
@@ -86,53 +118,64 @@ function Signup({ openLoginModal, closeModal }) {
                 onChange={handleUsernameInput}
               />
               <input
-                className="id"
+                className={`id ${
+                  isValidEmail(id) || id.length === 0 ? '' : 'disabled'
+                }`}
                 type="text"
                 placeholder="이메일*"
                 // 입력할 때마다 state 를 변경
                 onChange={handleIdInput}
               />
+              {!isValidEmail(id) && id.length !== 0 ? (
+                <p className="invalid-message">이메일을 입력하세요.</p>
+              ) : null}
               <input
-                className="pw"
+                className={`pw ${
+                  isValidPw(pw) || pw.length === 0 ? '' : 'disabled'
+                }`}
                 type="password"
                 placeholder="비밀번호*"
                 // 입력할 때마다 state 를 변경
                 onChange={handlePwInput}
               />
+              {!isValidPw(pw) && pw.length !== 0 ? (
+                <p className="invalid-message">잘못된 비밀번호입니다.</p>
+              ) : null}
               <div className="consents">
                 <div className="consents-checkbox">
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    required
+                    onChange={e => onCheckedAll(e.target.checked)}
+                    checked={
+                      checkedList.length === 0
+                        ? false
+                        : checkedList.length === dataLists.length
+                        ? true
+                        : false
+                    }
+                  />
                   <span>모두동의</span>
                 </div>
-                <div className="consents-checkbox">
-                  <input
-                    type="checkbox"
-                    required
-                    // 입력할 때마다 state 를 변경
-                    // onChange={handlePolicyAgreedInput}
-                  />
-                  <span>
-                    * 개인정보의 수집 및 이용에 대한 동의. 자세히 보기.
-                  </span>
-                </div>
-                <div className="consents-checkbox">
-                  <input
-                    type="checkbox"
-                    required
-                    // 입력할 때마다 state 를 변경
-                    // onChange={handleOverseasPrivacyInput}
-                  />
-                  <span>* 개인정보의 국외 이전에 대한 동의. 자세히 보기.</span>
-                </div>
-                <div className="consents-checkbox">
-                  <input type="checkbox" />
-                  <span>
-                    뉴스레터 구독을 위한 개인정보의 수집 및 이용에 대한 동의.
-                    자세히 보기.
-                  </span>
-                </div>
+                {dataLists.map(list => (
+                  // eslint-disable-next-line react/jsx-key
+                  <div className="consents-checkbox">
+                    <input
+                      key={list.id}
+                      type="checkbox"
+                      required
+                      onChange={e => onCheckedElement(e.target.checked, list)}
+                      checked={checkedList.includes(list) ? true : false}
+                    />
+                    <span>{list.data}</span>
+                  </div>
+                ))}
               </div>
-              <button className="make-account" onClick={handleSignup}>
+              <button
+                className="make-account"
+                disabled={!isValidButton}
+                onClick={handleSignup}
+              >
                 계정 만들기
               </button>
             </div>
@@ -142,5 +185,14 @@ function Signup({ openLoginModal, closeModal }) {
     </div>
   );
 }
+
+const dataLists = [
+  { id: 1, data: '* 개인정보의 수집 및 이용에 대한 동의. 자세히 보기.' },
+  { id: 2, data: '* 개인정보의 국외 이전에 대한 동의. 자세히 보기.' },
+  {
+    id: 3,
+    data: '뉴스레터 구독을 위한 개인정보의 수집 및 이용에 대한 동의.자세히 보기.',
+  },
+];
 
 export default Signup;

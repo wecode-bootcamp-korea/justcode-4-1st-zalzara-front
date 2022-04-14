@@ -33,6 +33,9 @@
   .signup-top {
     text-align: center;
     width: 50%;
+    input {
+      accent-color: black;
+    }
     .signup-title {
       padding: 30px 0;
       font-weight: bold;
@@ -60,16 +63,34 @@
     border: none;
     border-bottom: 1px solid black;
   }
+  .disabled {
+    border-bottom: 1px solid red;
+  }
+  .invalid-message {
+    padding-top: 3px;
+    font-size: 11px;
+    color: red;
+  }
   .make-account {
     margin: 20px 0;
     padding: 10px 0;
     background-color: white;
     border: 1px solid black;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      background-color: black;
+      cursor: pointer;
+      color: white;
+      display: block;
+    }
   }
   .consents {
     padding-top: 30px;
     .consents-checkbox {
       padding-bottom: 25px;
+      accent-color: black;
     }
   }
 }
