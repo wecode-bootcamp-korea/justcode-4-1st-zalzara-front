@@ -22,8 +22,8 @@ function Signup({ openLoginModal, closeModal }) {
         email: id,
         password: pw,
         username: username,
-        // policyAgreed: policyAgreed,
-        // overseasPrivacy: overseasPrivacy,
+        policyAgreed: true,
+        overseasPrivacy: true,
       }),
     })
       .then(res => res.json())

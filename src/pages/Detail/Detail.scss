@@ -1,21 +1,23 @@
 .main {
   font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+
   .content-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+
     .image-section {
+      width: 60%;
+      min-width: 40rem;
       img {
-        // width: 400px;
-        min-width: 500px;
         cursor: zoom-in;
       }
+      background-color: yellow;
     }
+
     .content-section {
       display: inline-block;
-      padding: 4rem;
-      // box-sizing: border-box;
-      // width: 100%;
-      // max-width: 800px;
+      margin-left: 4rem;
+      padding-top: 4rem;
       .sticky {
         position: sticky;
         top: -3rem;
@@ -31,17 +33,20 @@
         }
         .product-number {
           display: block;
-          font-size: 0.8rem;
+          font-size: 0.7rem;
           margin-top: 1rem;
         }
+        .product-description {
+          display: block;
+          margin-top: 1.3rem;
+        }
       }
-      .content-block {
-        margin-top: 1rem;
-      }
+
       .action-block {
-        position: sticky;
         top: 0;
         overflow: hidden;
+        min-width: 30rem;
+        width: 30rem;
         .size-header {
           display: block;
           margin-top: 1rem;
@@ -63,10 +68,11 @@
           }
         }
 
-        // Transition
+        // Action-box Transition
         .size {
           transition: 0.5s;
           transition-delay: 1s;
+          // background-color: yellow;
         }
         .size-header span {
           transition: 0.5s;
@@ -76,7 +82,7 @@
           position: absolute;
           padding: 0.1rem;
           left: 0.5rem;
-          top: 5.5rem;
+          top: 13rem;
           color: transparent;
           transition: 0s;
         }
@@ -105,12 +111,20 @@
         .add-cart {
           margin: 3rem 0;
           text-align: center;
-          border: 1px solid black;
           font-size: 0.7rem;
           cursor: pointer;
+          border: 1px solid black;
+
           .add-cart-text {
-            height: 100%;
-            padding: 0.8rem;
+            display: block;
+            padding: 1rem;
+            transition: 0.4s;
+            background-color: white;
+          }
+
+          :hover {
+            background-color: black;
+            color: white;
           }
         }
 
@@ -145,17 +159,12 @@
             justify-content: flex-start;
             box-sizing: border-box;
             overflow: hidden;
-            // background-color: yellow;
           }
           .recommend-body {
-            // background-color: blue;
             margin-right: 0.6rem;
             min-width: 200px;
             .image-box {
-              // background-color: yellow;
               margin-right: 1rem;
-              // width: 13rem;
-              // height: 18rem;
               overflow: hidden;
               img {
                 width: 100%;
