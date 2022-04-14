@@ -1,0 +1,16 @@
+.recommend__body {
+  margin-right: 0.6rem;
+  min-width: 13rem;
+
+  .image__box {
+    height: 15rem;
+  }
+  .description__box {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    span {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

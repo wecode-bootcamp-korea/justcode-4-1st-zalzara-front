@@ -1,0 +1,133 @@
+.Header {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  padding: 2rem 1rem;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: transparent;
+  transition: 0.5s;
+
+  .menu-logo-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      z-index: 1;
+    }
+    .menu-bar {
+      z-index: 1;
+    }
+  }
+  .nav {
+    position: fixed;
+    width: 16rem;
+    margin-left: -16rem;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    overflow: scroll;
+    transition: 0.5s;
+
+    ul {
+      padding-left: 1rem;
+      margin-top: 7rem;
+    }
+    li {
+      padding: 0.3rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: black;
+    }
+
+    li.special-price {
+      font-weight: bold;
+      color: rgb(224, 0, 0);
+    }
+    li.special-price:hover {
+      color: rgb(224, 0, 0);
+    }
+    li:hover {
+      color: #a7a7a7;
+    }
+    span.new {
+      font-size: 0.6rem;
+      font-style: italic;
+    }
+    .info {
+      font-size: 0.8rem;
+    }
+  }
+  .search-login-box {
+    display: flex;
+    justify-content: space-between;
+    .search-box {
+      margin-right: 3rem;
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  //로고 마우스 오버 애니메이션
+  .menu-logo-box:hover {
+    .logo {
+      margin-left: -2rem;
+      cursor: pointer;
+    }
+    .menu-bar {
+      color: transparent;
+      cursor: pointer;
+    }
+    .nav {
+      margin-left: 0rem;
+    }
+  }
+
+  .menu-bar {
+    margin-left: 0.5rem;
+    transition: 0.25s;
+  }
+
+  .logo {
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    width: 20rem;
+    transition: 0.6s;
+  }
+
+  .user-info-box {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 0.6rem;
+
+    span {
+      font-size: 0.7rem;
+    }
+    .login-btn {
+      display: flex;
+      align-content: space-between;
+      margin-right: 1em;
+      cursor: pointer;
+    }
+    .cart-btn {
+      display: flex;
+      align-items: space-between;
+      cursor: pointer;
+    }
+  }
+}
+
+.Header:hover {
+  background-color: white;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}

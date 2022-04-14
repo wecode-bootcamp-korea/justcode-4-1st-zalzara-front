@@ -1,0 +1,17 @@
+.CategoryCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 28px;
+  font-weight: 530;
+  position: relative;
+  span {
+    position: absolute;
+  }
+  img {
+    width: 100%;
+    height: 450px;
+    width: 360px;
+  }
+}

@@ -1,0 +1,132 @@
+.footer {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+  display: relative;
+  margin-top: 4rem;
+  background-color: white;
+
+  .info-block {
+    text-align: center;
+    line-height: 1.2rem;
+    font-size: 11px;
+    margin-top: 1.5rem;
+    span {
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .bold {
+      font-weight: bold;
+      margin-right: 4px;
+    }
+  }
+  .end-block {
+    margin-top: 2rem;
+
+    .input-row {
+      display: block;
+      text-align: center;
+
+      .input {
+        width: 30rem;
+        text-align: center;
+        padding-bottom: 0.4rem;
+        border: none;
+        border-bottom: 1px solid #1e1e1e;
+        font-size: 11px;
+      }
+    }
+    .social-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 4.5rem;
+      .follow-box {
+        width: 15rem;
+        text-align: center;
+
+        span {
+          display: block;
+          margin-bottom: 1rem;
+        }
+        .icons {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      .download-box {
+        width: 15rem;
+        text-align: center;
+
+        span {
+          display: block;
+          margin-bottom: 1rem;
+        }
+        svg {
+          margin-right: 0.8rem;
+        }
+      }
+    }
+    .footer-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 6rem;
+
+      .policy-container {
+        text-align: center;
+        width: 8rem;
+        span {
+          display: block;
+        }
+      }
+      .company-container {
+        text-align: center;
+        width: 8rem;
+        span {
+          display: block;
+        }
+      }
+      .contact-container {
+        text-align: center;
+        width: 8rem;
+        span {
+          display: block;
+        }
+      }
+      h4 {
+        margin-bottom: 0.8rem;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-decoration: underline;
+      }
+      span {
+        font-size: 0.6rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  .language {
+    margin-top: 3rem;
+    text-align: right;
+
+    span {
+      padding-right: 0.5rem;
+      font-size: 0.5rem;
+    }
+  }
+}
+
+.detail-footer {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+  text-align: center;
+  line-height: 1.2rem;
+  font-size: 11px;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dotted #ccc;
+  span {
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .bold {
+    font-weight: bold;
+    margin-right: 4px;
+  }
+}
