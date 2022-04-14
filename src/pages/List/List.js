@@ -29,7 +29,7 @@ export default function List() {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {loading ? (
-        <div>dsdasds</div>
+        <Loading />
       ) : (
         <div className="List">
           <section>
