@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import './Slider.css';
 import BtnSlider from './btnSlider';
 import dataSlider from './dataSlide';
-// import img1 from '../Slide/Images/mainImg1.jpg';
-// import img2 from '../Slide/Images/mainImg2.jpg';
-// import img3 from '../Slide/Images/mainImg3.jpg';
-// import img4 from '../Slide/Images/mainImg4.jpg';
 
 export default function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
-  //   const imgSlide = [img1, img2, img3, img4];
+
   const nextSlide = () => {
     if (slideIndex !== dataSlider.length) {
       setSlideIndex(slideIndex + 1);
@@ -41,7 +37,6 @@ export default function Slider() {
                 slideIndex === index + 1 ? 'slide slide-active' : 'slide'
               }
             >
-              {/* <img src={'http://localhost:3000' + img1} /> */}
               <img
                 src={
                   'http://localhost:3000' + `/images/mainImg${index + 1}.jpg`
