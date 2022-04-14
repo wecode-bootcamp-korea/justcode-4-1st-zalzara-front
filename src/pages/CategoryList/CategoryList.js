@@ -6,6 +6,7 @@ export default function CategoryList() {
   // const [categories, setCategories] = useState({});
   const [loading, setLoading] = useState(true);
 
+
   /* useEffect(() => {
     fetch('http://localhost:8800/categories', {
       method: 'GET',
