@@ -2,7 +2,8 @@
   font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
   display: relative;
   margin-top: 4rem;
-  border-top: 1px dotted rgb(180, 180, 180);
+  background-color: white;
+
   .info-block {
     text-align: center;
     line-height: 1.2rem;
@@ -23,7 +24,6 @@
     .input-row {
       display: block;
       text-align: center;
-      // background-color: yellow;
 
       .input {
         width: 30rem;
@@ -110,5 +110,23 @@
       padding-right: 0.5rem;
       font-size: 0.5rem;
     }
+  }
+}
+
+.detail-footer {
+  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
+  text-align: center;
+  line-height: 1.2rem;
+  font-size: 11px;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dotted #ccc;
+  span {
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .bold {
+    font-weight: bold;
+    margin-right: 4px;
   }
 }

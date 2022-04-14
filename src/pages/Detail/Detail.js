@@ -9,7 +9,6 @@ import RecommendItemCard from './RecommendItemCard';
 function Detail() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isLike, setIsLike] = useState(false);
-  const [carousel, setCarousel] = useState(0);
   const [rugList, setRugList] = useState({
     rugImage: [
       {
@@ -40,6 +39,7 @@ function Detail() {
   let productNumber;
   let productDescription;
   let productSize;
+  let productKey;
   if (rugList.rugImage[urlId - 1] != null) {
     productName = rugList.rugImage[urlId - 1].name;
     productImg = rugList.rugImage[urlId - 1].imageUrl;
@@ -47,9 +47,8 @@ function Detail() {
     productNumber = rugList.rugImage[urlId - 1].product_number;
     productDescription = rugList.rugImage[urlId - 1].description;
     productSize = rugList.rugImage[urlId - 1].size;
+    productKey = rugList.rugImage[urlId - 1].id;
   }
-
-  console.log(productImg);
 
   // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
@@ -64,7 +63,6 @@ function Detail() {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         if (result.message === {}) {
           alert('성공!!!!');
         }
@@ -75,7 +73,6 @@ function Detail() {
     isLike === false ? setIsLike(true) : setIsLike(false);
   };
 
-  console.log('carousel: ' + carousel);
   return (
     <div>
       <section className="main">
@@ -130,26 +127,17 @@ function Detail() {
                   <div className="recommend-header">
                     <span>추천 상품</span>
                     <div className="button-box">
-                      <button
-                        className="button-left"
-                        onClick={() => setCarousel(1)}
-                      >
-                        &#60;
-                      </button>
-                      <button
-                        className="button-right"
-                        onClick={() => (setCarousel += 1)}
-                      >
-                        &#62;
-                      </button>
+                      <button className="button-left">&#60;</button>
+                      <button className="button-right">&#62;</button>
                     </div>
                   </div>
                   <div className="recommend-card-box">
                     {rugList.rugImage.map(rug => (
                       <RecommendItemCard
-                        image={productImg}
-                        name={productName}
-                        price={productPrice}
+                        key={rug.id}
+                        image={rug.imageUrl}
+                        name={rug.name}
+                        price={rug.price}
                       />
                     ))}
                   </div>
@@ -170,32 +158,6 @@ function Detail() {
           <img alt="확대된 이미지" src={productImg} />
         </Modal>
       </div>
-
-      {/* footer */}
-      <section className="detail-footer">
-        <span>
-          <b className="bold">제조업체: </b>
-          Zara Home S.A.|
-        </span>
-        <span>
-          <b className="bold">수입업체: </b>
-          Zara Home Korea Ltd.|
-        </span>
-        <span>
-          <b className="bold">제조국: </b>
-          스페인|
-        </span>
-        <span>
-          <b className="bold">제조일: </b>본 제품은 캠페인 출시 6개월 전에
-          제조되었습니다. 보다 정확한 제조일을 확인하시려면 080-500-6445에
-          연락하십시오.|
-        </span>
-        <span>
-          <b className="bold">품질 보증 기준: </b>
-          소비자는 저희 제품의 결함으로 인한 피해에 대하여 약관 및 조건에
-          의거하여 보상받을 수 있습니다.
-        </span>
-      </section>
     </div>
   );
 }

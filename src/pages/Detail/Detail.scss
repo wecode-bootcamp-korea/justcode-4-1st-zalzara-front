@@ -185,24 +185,6 @@
   }
 }
 
-.detail-footer {
-  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
-  text-align: center;
-  line-height: 1.2rem;
-  font-size: 11px;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px dotted #ccc;
-  span {
-    display: inline-block;
-    margin-right: 6px;
-  }
-  .bold {
-    font-weight: bold;
-    margin-right: 4px;
-  }
-}
-
 @keyframes slide-right {
   0% {
     left: 0;
