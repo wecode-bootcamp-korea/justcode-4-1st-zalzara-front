@@ -26,10 +26,13 @@
         margin-top: 4rem;
         .product-name {
           font-size: 1.5rem;
+          font-weight: 700;
         }
         .product-price {
           display: block;
-          margin-top: 1rem;
+          margin-top: 1.5rem;
+          font-size: 1.1rem;
+          font-weight: 700;
         }
         .product-number {
           display: block;
@@ -65,6 +68,7 @@
           }
           .icon {
             font-size: 1.2rem;
+            margin-top: 0.5rem;
           }
         }
 
@@ -72,7 +76,6 @@
         .size {
           transition: 0.5s;
           transition-delay: 1s;
-          // background-color: yellow;
         }
         .size-header span {
           transition: 0.5s;
@@ -144,21 +147,34 @@
                 cursor: pointer;
                 color: white;
                 background-color: black;
+                box-shadow: 0px 3px 3px rgb(189, 189, 189);
+                transition: 0.3s;
               }
               .button-right {
                 padding: 0.3rem 0.7rem;
                 border: 1px solid black;
                 cursor: pointer;
                 color: white;
-                background-color: black;
+                background-color: rgb(0, 0, 0);
+                box-shadow: 0px 3px 3px rgb(189, 189, 189);
+                transition: 0.3s;
+              }
+              .disabled {
+                background-color: white;
+                color: black;
+                border: white;
               }
             }
           }
           .recommend-card-box {
-            display: flex;
-            justify-content: flex-start;
             box-sizing: border-box;
             overflow: hidden;
+          }
+          .recommend-card-moving {
+            display: flex;
+            justify-content: flex-start;
+            transition: 0.5s;
+            padding-right: 50rem;
           }
           .recommend-body {
             margin-right: 0.6rem;
@@ -182,24 +198,6 @@
         }
       }
     }
-  }
-}
-
-.detail-footer {
-  font-family: Arial, ZH-Sans, 'Lucida Sans Unicode', sans-serif, 'icomoon';
-  text-align: center;
-  line-height: 1.2rem;
-  font-size: 11px;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px dotted #ccc;
-  span {
-    display: inline-block;
-    margin-right: 6px;
-  }
-  .bold {
-    font-weight: bold;
-    margin-right: 4px;
   }
 }
 

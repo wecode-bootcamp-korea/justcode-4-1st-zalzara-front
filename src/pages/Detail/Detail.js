@@ -5,11 +5,16 @@ import Modal from './Modal.js';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
 import { useParams } from 'react-router-dom';
 import RecommendItemCard from './RecommendItemCard';
+import Loading from '../Loading/Loading';
 
 function Detail() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isLike, setIsLike] = useState(false);
-  const [carousel, setCarousel] = useState(0);
+  const [carouselCount, setCarouselCount] = useState(0);
+  const [productDetail, setProductDetail] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
   const [rugList, setRugList] = useState({
     rugImage: [
       {
@@ -31,27 +36,22 @@ function Detail() {
       });
   }, []);
 
-  const params = useParams();
-  const urlId = params.id;
+  useEffect(() => {
+    fetch(`http://localhost:8000/categories/러그/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        setProductDetail(res.productDetail[0]);
+        setLoading(false);
+      });
+  }, []);
 
-  let productName;
-  let productImg;
-  let productPrice;
-  let productNumber;
-  let productDescription;
-  let productSize;
-  if (rugList.rugImage[urlId - 1] != null) {
-    productName = rugList.rugImage[urlId - 1].name;
-    productImg = rugList.rugImage[urlId - 1].imageUrl;
-    productPrice = rugList.rugImage[urlId - 1].price;
-    productNumber = rugList.rugImage[urlId - 1].product_number;
-    productDescription = rugList.rugImage[urlId - 1].description;
-    productSize = rugList.rugImage[urlId - 1].size;
-  }
+  console.log(productDetail);
 
-  console.log(productImg);
-
-  // 장바구니 클릭시 상품 id 보내기
   const addCart = () => {
     fetch('http://localhost:8000/shop-cart/add-cart', {
       method: 'POST',
@@ -59,144 +59,160 @@ function Detail() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        product_id: urlId,
+        product_id: id,
       }),
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         if (result.message === {}) {
           alert('성공!!!!');
         }
       });
   };
 
+  //좋아요 클릭시 좋아요 표시
   const LikeHandler = () => {
     isLike === false ? setIsLike(true) : setIsLike(false);
   };
 
-  console.log('carousel: ' + carousel);
-  return (
-    <div>
-      <section className="main">
-        <div className="content-container">
-          {/* 이미지 모달 트리거 */}
-          <div
-            className="image-section"
-            onClick={() => setModalOpen(true)}
-            id="img"
-          >
-            <img alt="이미지 섹션" src={productImg} />
-          </div>
+  //prev, next 버튼 클릭시 캐로셀 동작
+  let carouselStyle = { margin: '0 0 0 ' + `${-218 * carouselCount}px` };
 
-          {/* 컨텐츠 섹션 */}
-          <div className="content-section">
-            <div className="sticky">
-              <div className="header-box">
-                <h1 className="product-name">{productName}</h1>
-                <span className="product-price">{productPrice}</span>
-                <span className="product-number">제품번호 {productNumber}</span>
-                <span className="product-description">
-                  {productDescription}
-                </span>
+  const CarouselHandler = i => {
+    setCarouselCount(prev => prev + i);
+  };
+  console.log(productDetail.price);
+
+  //가격 정규표현식
+  const slicePrice = p => {
+    return p.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  };
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <section className="main">
+            <div className="content-container">
+              {/* 이미지 모달 트리거 */}
+              <div
+                className="image-section"
+                onClick={() => setModalOpen(true)}
+                id="img"
+              >
+                <img alt="이미지 섹션" src={productDetail.imageUrl} />
               </div>
 
-              {/* 사이즈 섹션 */}
-              <div className="action-block">
-                <div className="slide">
-                  <div className="size-header">
-                    <span>사이즈</span>
+              {/* 컨텐츠 섹션 */}
+              <div className="content-section">
+                <div className="sticky">
+                  <div className="header-box">
+                    <h1 className="product-name">{productDetail.name}</h1>
+                    <span className="product-price">
+                      {`${slicePrice(productDetail.price)} 원`}
+                    </span>
+                    <span className="product-number">
+                      제품번호 {productDetail.product_number}
+                    </span>
+                    <span className="product-description">
+                      {productDetail.description}
+                    </span>
                   </div>
-                  <div className="size-detail">
-                    <div className="size">
-                      <span>{productSize}</span>
-                      <div className="icon" onClick={LikeHandler}>
-                        {isLike ? <IoHeart /> : <IoHeartOutline />}
+
+                  {/* 사이즈 섹션 */}
+                  <div className="action-block">
+                    <div className="slide">
+                      <div className="size-header">
+                        <span>사이즈</span>
+                      </div>
+                      <div className="size-detail">
+                        <div className="size">
+                          <span>{productDetail.size}</span>
+                          <div className="icon" onClick={LikeHandler}>
+                            {isLike ? <IoHeart /> : <IoHeartOutline />}
+                          </div>
+                        </div>
+                        <div className="price">
+                          <span>{`${slicePrice(productDetail.price)} 원`}</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="price">
-                      <span>{productPrice}</span>
-                    </div>
-                  </div>
-                </div>
 
-                {/* 장바구니 버튼 */}
-                <div className="add-cart" onClick={addCart}>
-                  <span className="add-cart-text">
-                    장바구니 담기 ({productPrice})
-                  </span>
-                </div>
-                <div className="recommend-item-box">
-                  <div className="recommend-header">
-                    <span>추천 상품</span>
-                    <div className="button-box">
-                      <button
-                        className="button-left"
-                        onClick={() => setCarousel(1)}
-                      >
-                        &#60;
-                      </button>
-                      <button
-                        className="button-right"
-                        onClick={() => (setCarousel += 1)}
-                      >
-                        &#62;
-                      </button>
+                    {/* 장바구니 버튼 */}
+                    <div className="add-cart" onClick={addCart}>
+                      <span className="add-cart-text">
+                        장바구니 담기 ({`${slicePrice(productDetail.price)} 원`}
+                        )
+                      </span>
                     </div>
-                  </div>
-                  <div className="recommend-card-box">
-                    {rugList.rugImage.map(rug => (
-                      <RecommendItemCard
-                        image={productImg}
-                        name={productName}
-                        price={productPrice}
-                      />
-                    ))}
+                    <div className="recommend-item-box">
+                      <div className="recommend-header">
+                        <span>추천 상품</span>
+                        <div className="button-box">
+                          <button
+                            className={
+                              carouselCount === 0
+                                ? 'button-left disabled'
+                                : 'button-left'
+                            }
+                            onClick={() => CarouselHandler(-1)}
+                            disabled={carouselCount === 0 ? true : false}
+                          >
+                            &#60;
+                          </button>
+                          <button
+                            className={
+                              carouselCount === 4
+                                ? 'button-right disabled'
+                                : 'button-right'
+                            }
+                            onClick={() => CarouselHandler(1)}
+                            disabled={carouselCount === 4 ? true : false}
+                            // style={{
+                            //   backgroundColor: 'white',
+                            //   boxShadow: '0px 3px 3px rgb(189, 189, 189)',
+                            // }}
+                          >
+                            &#62;
+                          </button>
+                        </div>
+                      </div>
+                      <div className="recommend-card-box">
+                        <div
+                          className="recommend-card-moving"
+                          style={carouselStyle}
+                        >
+                          {rugList.rugImage.map(rug => (
+                            <RecommendItemCard
+                              key={rug.id}
+                              image={rug.imageUrl}
+                              name={rug.name}
+                              price={rug.price}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </section>
+
+          {/* 모달 */}
+          <div>
+            <Modal
+              open={modalOpen}
+              close={() => setModalOpen(false)}
+              header="Modal heading"
+            >
+              <img alt="확대된 이미지" src={productDetail.imageUrl} />
+            </Modal>
           </div>
         </div>
-      </section>
-
-      {/* 모달 */}
-      <div>
-        <Modal
-          open={modalOpen}
-          close={() => setModalOpen(false)}
-          header="Modal heading"
-        >
-          <img alt="확대된 이미지" src={productImg} />
-        </Modal>
-      </div>
-
-      {/* footer */}
-      <section className="detail-footer">
-        <span>
-          <b className="bold">제조업체: </b>
-          Zara Home S.A.|
-        </span>
-        <span>
-          <b className="bold">수입업체: </b>
-          Zara Home Korea Ltd.|
-        </span>
-        <span>
-          <b className="bold">제조국: </b>
-          스페인|
-        </span>
-        <span>
-          <b className="bold">제조일: </b>본 제품은 캠페인 출시 6개월 전에
-          제조되었습니다. 보다 정확한 제조일을 확인하시려면 080-500-6445에
-          연락하십시오.|
-        </span>
-        <span>
-          <b className="bold">품질 보증 기준: </b>
-          소비자는 저희 제품의 결함으로 인한 피해에 대하여 약관 및 조건에
-          의거하여 보상받을 수 있습니다.
-        </span>
-      </section>
-    </div>
+      )}
+    </>
   );
 }
 

@@ -16,6 +16,30 @@ import { DiAndroid } from 'react-icons/di';
 export default function Footer() {
   return (
     <div className="footer">
+      <section className="detail-footer">
+        <span>
+          <b className="bold">제조업체: </b>
+          Zara Home S.A.|
+        </span>
+        <span>
+          <b className="bold">수입업체: </b>
+          Zara Home Korea Ltd.|
+        </span>
+        <span>
+          <b className="bold">제조국: </b>
+          스페인|
+        </span>
+        <span>
+          <b className="bold">제조일: </b>본 제품은 캠페인 출시 6개월 전에
+          제조되었습니다. 보다 정확한 제조일을 확인하시려면 080-500-6445에
+          연락하십시오.|
+        </span>
+        <span>
+          <b className="bold">품질 보증 기준: </b>
+          소비자는 저희 제품의 결함으로 인한 피해에 대하여 약관 및 조건에
+          의거하여 보상받을 수 있습니다.
+        </span>
+      </section>
       <section className="info-block">
         <span>잘자라홈코리아 유한회사 (Zalzara Home Korea Ltd.) |</span>
         <span>서울시 중구 한강대로 416 서울스퀘어 13층</span>
