@@ -7,13 +7,11 @@
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: inherit;
-  display: flex;
   width: 100%;
   background-color: transparent;
+  transition: 0.5s;
 
   .menu-logo-box {
-    // background-color: yellow;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,8 +24,8 @@
   }
   .nav {
     position: fixed;
-    width: 13rem;
-    margin-left: -13rem;
+    width: 16rem;
+    margin-left: -16rem;
     top: 0;
     left: 0;
     bottom: 0;
@@ -37,16 +35,31 @@
 
     ul {
       padding-left: 1rem;
-      margin-top: 6rem;
+      margin-top: 7rem;
     }
     li {
       padding: 0.3rem;
-      font-size: 0.8rem;
+      font-size: 1.1rem;
       cursor: pointer;
       color: black;
     }
+
+    li.special-price {
+      font-weight: bold;
+      color: rgb(224, 0, 0);
+    }
+    li.special-price:hover {
+      color: rgb(224, 0, 0);
+    }
     li:hover {
       color: #a7a7a7;
+    }
+    span.new {
+      font-size: 0.6rem;
+      font-style: italic;
+    }
+    .info {
+      font-size: 0.8rem;
     }
   }
   .search-login-box {
@@ -109,4 +122,12 @@
       cursor: pointer;
     }
   }
+}
+
+.Header:hover {
+  background-color: white;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
 }
