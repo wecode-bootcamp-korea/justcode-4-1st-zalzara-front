@@ -151,16 +151,28 @@ function Detail() {
                         <span>추천 상품</span>
                         <div className="button-box">
                           <button
-                            className="button-left"
+                            className={
+                              carouselCount === 0
+                                ? 'button-left disabled'
+                                : 'button-left'
+                            }
                             onClick={() => CarouselHandler(-1)}
                             disabled={carouselCount === 0 ? true : false}
                           >
                             &#60;
                           </button>
                           <button
-                            className="button-right"
+                            className={
+                              carouselCount === 4
+                                ? 'button-right disabled'
+                                : 'button-right'
+                            }
                             onClick={() => CarouselHandler(1)}
                             disabled={carouselCount === 4 ? true : false}
+                            // style={{
+                            //   backgroundColor: 'white',
+                            //   boxShadow: '0px 3px 3px rgb(189, 189, 189)',
+                            // }}
                           >
                             &#62;
                           </button>
