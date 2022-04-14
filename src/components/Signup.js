@@ -52,8 +52,7 @@ function Signup({ openLoginModal, closeModal }) {
 
   // pw 형식 가능 여부
   function isValidPw(str) {
-    const regPw =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    const regPw = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
     return regPw.test(str);
   }
 
@@ -127,6 +126,9 @@ function Signup({ openLoginModal, closeModal }) {
                 // 입력할 때마다 state 를 변경
                 onChange={handleIdInput}
               />
+              {!isValidEmail(id) && id.length !== 0 ? (
+                <p className="invalid-message">이메일을 입력하세요.</p>
+              ) : null}
               <input
                 className={`pw ${
                   isValidPw(pw) || pw.length === 0 ? '' : 'disabled'
@@ -136,6 +138,9 @@ function Signup({ openLoginModal, closeModal }) {
                 // 입력할 때마다 state 를 변경
                 onChange={handlePwInput}
               />
+              {!isValidPw(pw) && pw.length !== 0 ? (
+                <p className="invalid-message">잘못된 비밀번호입니다.</p>
+              ) : null}
               <div className="consents">
                 <div className="consents-checkbox">
                   <input

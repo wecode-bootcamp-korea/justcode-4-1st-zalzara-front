@@ -66,6 +66,11 @@
   .disabled {
     border-bottom: 1px solid red;
   }
+  .invalid-message {
+    padding-top: 3px;
+    font-size: 11px;
+    color: red;
+  }
   .make-account {
     margin: 20px 0;
     padding: 10px 0;

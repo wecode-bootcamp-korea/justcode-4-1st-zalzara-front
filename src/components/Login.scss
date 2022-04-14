@@ -63,6 +63,11 @@ input:focus {
   .disabled {
     border-bottom: 1px solid red;
   }
+  .invalid-message {
+    padding-top: 3px;
+    font-size: 11px;
+    color: red;
+  }
   .forgot-pw {
     margin: 30px 0 10px 0;
     text-decoration: none;

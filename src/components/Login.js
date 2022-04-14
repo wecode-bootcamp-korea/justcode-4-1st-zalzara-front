@@ -13,6 +13,8 @@ function Login({
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
+  const [invalidMessage, setInvalidMessage] = useState(false);
+
   const handleLogin = () => {
     fetch('http://localhost:8000/user/login', {
       method: 'POST',
@@ -79,6 +81,9 @@ function Login({
                   // 입력할 때마다 state 를 변경
                   onChange={handleIdInput}
                 />
+                {!isValidEmail(id) && id.length !== 0 ? (
+                  <p className="invalid-message">이메일 주소를 입력하세요.</p>
+                ) : null}
                 <input
                   className="pw"
                   type="password"
