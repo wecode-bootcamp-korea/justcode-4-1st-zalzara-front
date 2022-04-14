@@ -13,8 +13,6 @@ function Login({
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
-  const [invalidMessage, setInvalidMessage] = useState(false);
-
   const handleLogin = () => {
     fetch('http://localhost:8000/user/login', {
       method: 'POST',
