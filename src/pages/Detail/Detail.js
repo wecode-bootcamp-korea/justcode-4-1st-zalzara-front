@@ -169,10 +169,6 @@ function Detail() {
                             }
                             onClick={() => CarouselHandler(1)}
                             disabled={carouselCount === 4 ? true : false}
-                            // style={{
-                            //   backgroundColor: 'white',
-                            //   boxShadow: '0px 3px 3px rgb(189, 189, 189)',
-                            // }}
                           >
                             &#62;
                           </button>
