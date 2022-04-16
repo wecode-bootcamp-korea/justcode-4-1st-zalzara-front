@@ -10,7 +10,7 @@ function Signup({ openLoginModal, closeModal }) {
   const [username, setUsername] = useState('');
 
   const handleSignup = () => {
-    fetch('http://localhost:8000/user/signup', {
+    fetch('http://3.36.72.107:8000/user/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,14 @@ function Signup({ openLoginModal, closeModal }) {
       }),
     })
       .then(res => res.json())
-      .then(result => console.log(result));
+      .then(result => {
+        if (result.message === 'SIGNUP_SUCCESS') {
+          alert('환영합니다.');
+          openLoginModal();
+        } else {
+          alert('이미 존재하는 유저이거나 가입 조건이 맞지 않습니다.');
+        }
+      });
   };
 
   const handleIdInput = e => {
@@ -145,7 +152,6 @@ function Signup({ openLoginModal, closeModal }) {
                 <div className="consents-checkbox">
                   <input
                     type="checkbox"
-                    required
                     onChange={e => onCheckedAll(e.target.checked)}
                     checked={
                       checkedList.length === 0
@@ -163,9 +169,9 @@ function Signup({ openLoginModal, closeModal }) {
                     <input
                       key={list.id}
                       type="checkbox"
-                      required
                       onChange={e => onCheckedElement(e.target.checked, list)}
                       checked={checkedList.includes(list) ? true : false}
+                      required
                     />
                     <span>{list.data}</span>
                   </div>

@@ -7,7 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const [showLoginModal, setShowLoginModal] = useState('closed');
+
   const navigate = useNavigate();
+
+  // 로그인 완료 여부
+  const [loginStatus, setLoginStatus] = useState(false);
 
   const openLoginModal = () => {
     setShowLoginModal('login');
@@ -17,9 +21,18 @@ function Header() {
     setShowLoginModal('signup');
   };
 
-  const closeModal = event => {
-    event.preventDefault();
+  const closeModal = () => {
     setShowLoginModal('closed');
+  };
+
+  // const closeModal = event => {
+  //   event.preventDefault();
+  //   setShowLoginModal('closed');
+  // };
+
+  // 로그인 성공 시 로그인 상태를 true로
+  const loginSuccess = () => {
+    setLoginStatus(true);
   };
 
   return (
@@ -69,7 +82,7 @@ function Header() {
             <div className="login-btn" onClick={openLoginModal}>
               <AiOutlineUser size="20" />
               <div>
-                <span>로그인</span>
+                {loginStatus ? <span>내 정보</span> : <span>로그인</span>}
               </div>
             </div>
             <div className="cart-btn" onClick={() => navigate('/shop-cart')}>
@@ -86,6 +99,8 @@ function Header() {
         openSignupModal={openSignupModal}
         openLoginModal={openLoginModal}
         closeModal={closeModal}
+        loginStatus={loginStatus}
+        loginSuccess={loginSuccess}
       />
     </>
   );
