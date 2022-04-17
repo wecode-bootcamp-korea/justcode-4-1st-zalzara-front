@@ -9,8 +9,10 @@
   .image-section {
     width: 60%;
     min-width: 40rem;
+
     img {
       cursor: zoom-in;
+      object-fit: cover;
     }
   }
 
@@ -44,7 +46,6 @@
         margin-top: 1.3rem;
       }
     }
-
 
     .action-block {
       top: 0;
