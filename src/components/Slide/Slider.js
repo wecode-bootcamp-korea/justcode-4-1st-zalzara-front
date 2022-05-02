@@ -39,22 +39,23 @@ export default function Slider() {
             >
               <img
                 src={
-                  'http://localhost:3000' + `/images/mainImg${index + 1}.jpg`
+                  'http://13.124.185.182:3000' +
+                  `/images/mainImg${index + 1}.jpg`
                 }
               />
             </div>
           </div>
         );
       })}
-      <BtnSlider moveSlide={nextSlide} direction={'next'} />
-      <BtnSlider moveSlide={prevSlide} direction={'prev'} />
+      <BtnSlider moveSlide={nextSlide} direction="next" />
+      <BtnSlider moveSlide={prevSlide} direction="prev" />
 
       <div className="container-dots">
         {Array.from({ length: 4 }).map((item, index) => (
           <div
             onClick={() => moveDot(index + 1)}
             className={slideIndex === index + 1 ? 'dot active' : 'dot'}
-          ></div>
+          />
         ))}
       </div>
     </div>

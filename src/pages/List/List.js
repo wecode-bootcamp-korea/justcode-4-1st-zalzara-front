@@ -12,7 +12,7 @@ export default function List() {
   const [rugList, setRugList] = useState([{}]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/categories/러그', {
+    fetch('http://3.36.72.107:8000/categories/러그', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

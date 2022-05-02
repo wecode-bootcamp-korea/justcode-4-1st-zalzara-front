@@ -8,13 +8,14 @@ function Login({
   openSignupModal,
   openLoginModal,
   closeModal,
+  loginSuccess,
 }) {
   // id, pw 를 받아 state 로 사용
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
   const handleLogin = () => {
-    fetch('http://localhost:8000/user/login', {
+    fetch('http://3.36.72.107:8000/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +26,15 @@ function Login({
       }),
     })
       .then(res => res.json())
-      .then(result => console.log(result));
+      .then(result => {
+        if (result.message === 'INVALID_USER') {
+          alert('이메일 또는 비밀번호가 잘못 되었습니다.');
+        } else if (result.message === 'SUCCESS_LOGIN') {
+          alert('환영합니다.');
+          loginSuccess();
+          closeModal();
+        }
+      });
   };
 
   // id, pw input 값을 받아 state 로 받는 함수
@@ -43,7 +52,7 @@ function Login({
   // email 형식 가능 여부
   function isValidEmail(str) {
     const regEmail =
-      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+      /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     return regEmail.test(str);
   }
 

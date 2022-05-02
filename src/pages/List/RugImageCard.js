@@ -12,7 +12,7 @@ function RugImageCard({ rug }) {
   const navigate = useNavigate();
 
   const postProduct = rugId => {
-    fetch('http://localhost:8000/categories/:category', {
+    fetch('http://3.36.72.107:8000/categories/:category', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
