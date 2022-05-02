@@ -37,7 +37,7 @@ function Detail() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/categories/러그/${id}`, {
+    fetch(`http://3.36.72.107:8000/categories/러그/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ function Detail() {
   }, [id]);
 
   const addCart = () => {
-    fetch('http://localhost:8000/shop-cart/add-cart', {
+    fetch('http://3.36.72.107:8000/shop-cart/add-cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
